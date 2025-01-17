@@ -1,0 +1,27 @@
+[gd_scene load_steps=8 format=3 uid="uid://bifoo3ioqpa1v"]
+
+[ext_resource type="Script" path="res://scenes/agents/player.gd" id="1_ofvks"]
+[ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="1_vgdam"]
+[ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="3_5ji0m"]
+[ext_resource type="PackedScene" uid="uid://c32p7a7tdl8fw" path="res://scenes/components/hit_box_component.tscn" id="4_4c377"]
+[ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_dhf71"]
+[ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="6_1o66d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ofvks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d444l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vgdam")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_5ji0m")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_4c377")]
+
+[node name="HurtBoxComponent" parent="." instance=ExtResource("5_dhf71")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_1o66d")]

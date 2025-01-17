@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kydyha1oywvr"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vaaa6"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_vaaa6")
+
+[node name="Camera2D" type="Camera2D" parent="."]

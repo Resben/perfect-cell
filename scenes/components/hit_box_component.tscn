@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c32p7a7tdl8fw"]
+
+[ext_resource type="Script" path="res://scenes/components/hit_box_component.gd" id="1_mdnt2"]
+
+[node name="HitBoxComponent" type="Area2D"]
+script = ExtResource("1_mdnt2")
+
+[node name="Timer" type="Timer" parent="."]

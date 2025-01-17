@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://kydyha1oywvr"]
+[gd_scene load_steps=5 format=3 uid="uid://kydyha1oywvr"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vaaa6"]
+
+[sub_resource type="Gradient" id="Gradient_sseow"]
+colors = PackedColorArray(0.738048, 0.727361, 3.85046e-07, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2yroe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wnocg"]
+color_ramp = SubResource("Gradient_sseow")
+noise = SubResource("FastNoiseLite_2yroe")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_vaaa6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(273.5, 159)
+scale = Vector2(1.35352, 1)
+texture = SubResource("NoiseTexture2D_wnocg")

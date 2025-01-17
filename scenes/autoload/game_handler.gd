@@ -2,11 +2,12 @@ extends Node
 
 @export var levels : Array[LevelData]
 
-var current_level : LevelData
 var level_index : int = 0
+var main : Main
 
 func get_next_level():
 	level_index += 1
-	current_level = levels[level_index]
-	
-	return levels[level_index + 1]
+	var next_level = null
+	if levels.size() > level_index:
+		next_level = levels[level_index]
+	return next_level

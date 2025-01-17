@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=5 format=3 uid="uid://yk76xlmyhauh"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_vgwd5"]
+
+[sub_resource type="Gradient" id="Gradient_qlpwp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e2gxc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7bkng"]
+color_ramp = SubResource("Gradient_qlpwp")
+noise = SubResource("FastNoiseLite_e2gxc")
+
+[resource]
+script = ExtResource("1_vgwd5")
+required_points = 150
+enemy_composition = {}
+texture = SubResource("NoiseTexture2D_7bkng")

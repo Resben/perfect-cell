@@ -1,8 +1,6 @@
 extends Node2D
 class_name Level
 
-@onready var camera : Camera2D = $Camera2D
-
 var data : LevelData
 
 # Set backgrounds and every and etc

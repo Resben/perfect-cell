@@ -14,3 +14,9 @@ func get_next_level():
 
 func transition_to_next():
 	pass
+
+func bye_bye():
+	print("not implemented")
+
+func play():
+	pass

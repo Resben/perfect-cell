@@ -6,7 +6,7 @@ class_name Player
 @onready var hurtbox_component : HurtBoxComponent = $HurtBoxComponent
 @onready var health_component : HealthComponent = $HealthComponent
 
-var current_level_points
+var current_level_points : int = 0
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -19,13 +19,12 @@ func _physics_process(delta):
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
 
-func on_consume(value : int):
-	pass
-
 func _on_yum_sphere_area_entered(area):
 	if area is Edible:
 		current_level_points += area.value
-		GameHandler
+		if current_level_points > GameHandler.main.current_level.data.required_points:
+			GameHandler.main.transition_to_next()
+		area.queue_free()
 
 func _process(delta):
 	if Input.is_action_just_pressed("test"):

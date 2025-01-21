@@ -1,0 +1,256 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmwnhmn5g0t52"]
+
+[ext_resource type="Script" path="res://scenes/UI/controller.gd" id="1_m6lr5"]
+[ext_resource type="Script" path="res://scenes/UI/HUD.gd" id="2_3hwkv"]
+[ext_resource type="Script" path="res://scenes/UI/Paused.gd" id="3_qjek2"]
+[ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="4_3s4yv"]
+[ext_resource type="Script" path="res://scenes/UI/TransitionPlayer.gd" id="4_sgbrq"]
+
+[sub_resource type="Animation" id="Animation_v6cdk"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.2, 0.105882, 1, 0), Color(0.2, 0.105882, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5222d"]
+resource_name = "transition_pt2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.2, 0.105882, 1, 1), Color(0.2, 0.105882, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jge1q"]
+_data = {
+"transition": SubResource("Animation_v6cdk"),
+"transition_pt2": SubResource("Animation_5222d")
+}
+
+[sub_resource type="Animation" id="Animation_1bwyy"]
+resource_name = "loop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83egs"]
+_data = {
+"loop": SubResource("Animation_1bwyy")
+}
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource("1_m6lr5")
+
+[node name="Startup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Startup"]
+modulate = Color(0.338573, 0.0890561, 0.0478947, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_3s4yv")
+
+[node name="Button" type="Button" parent="Startup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play
+"
+
+[node name="HSlider" type="HSlider" parent="Startup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = 32.0
+offset_right = 134.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("2_3hwkv")
+
+[node name="Paused" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_qjek2")
+
+[node name="MarginContainer" type="MarginContainer" parent="Paused"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="TextureRect" type="TextureRect" parent="Paused/MarginContainer"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 2
+texture = ExtResource("4_3s4yv")
+
+[node name="Continue" type="Button" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -61.0
+offset_right = 40.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue
+"
+
+[node name="ToMenu" type="Button" parent="Paused/MarginContainer/TextureRect"]
+offset_left = 203.0
+offset_top = 86.0
+offset_right = 279.0
+offset_bottom = 117.0
+text = "To Menu
+"
+
+[node name="HSlider" type="HSlider" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.008
+offset_left = 109.0
+offset_top = 130.0
+offset_right = 377.16
+offset_bottom = 146.0
+
+[node name="Label" type="Label" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 126.0
+offset_right = 104.0
+offset_bottom = 149.0
+text = "Volume
+"
+
+[node name="Label2" type="Label" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 9.0
+offset_right = 258.0
+offset_bottom = 32.0
+text = "PAUSED"
+
+[node name="TransitionPlayer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_sgbrq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_jge1q")
+}
+
+[node name="LoadingAnimationPlayer" type="AnimationPlayer" parent="TransitionPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_83egs")
+}
+
+[node name="TextureRect" type="TextureRect" parent="TransitionPlayer"]
+modulate = Color(0.2, 0.105882, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_3s4yv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TransitionPlayer"]
+position = Vector2(585, 329)
+scale = Vector2(0.289063, 0.296875)
+texture = ExtResource("4_3s4yv")
+
+[node name="Label" type="Label" parent="TransitionPlayer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DefaultTimeout" type="Timer" parent="TransitionPlayer"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="pressed" from="Startup/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="Startup/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Paused/MarginContainer/TextureRect/Continue" to="Paused" method="_on_continue_pressed"]
+[connection signal="pressed" from="Paused/MarginContainer/TextureRect/ToMenu" to="Paused" method="_on_to_menu_pressed"]
+[connection signal="animation_finished" from="TransitionPlayer/AnimationPlayer" to="TransitionPlayer" method="play_callback"]
+[connection signal="timeout" from="TransitionPlayer/DefaultTimeout" to="TransitionPlayer" method="_on_default_timeout"]
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

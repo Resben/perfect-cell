@@ -5,6 +5,8 @@ class_name Agent
 @onready var velocity_component : VelocityComponent = $VelocityComponent
 @onready var hitbox_component : HitBoxComponent = $HitBoxComponent
 @onready var hurtbox_component : HurtBoxComponent = $HurtBoxComponent
+@onready var navigation_component : NavigationComponent = $NavigationComponent
+
 
 @export var edible : PackedScene
 @export var value : int

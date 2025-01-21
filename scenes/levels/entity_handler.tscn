@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvwo0n6v5p4ic"]
+
+[ext_resource type="Script" path="res://scenes/levels/entity_handler.gd" id="1_3tv4p"]
+
+[node name="EntityHandler" type="Node2D"]
+script = ExtResource("1_3tv4p")

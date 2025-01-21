@@ -6,4 +6,4 @@
 
 [node name="GameHandler" type="Node"]
 script = ExtResource("1_lkcaw")
-levels = Array[Object]([ExtResource("2_1xst5"), ExtResource("3_iqxi3")])
+levels = Array[Resource("res://scenes/levels/level_data.gd")]([ExtResource("2_1xst5"), ExtResource("3_iqxi3")])

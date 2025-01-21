@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bifoo3ioqpa1v"]
+[gd_scene load_steps=9 format=3 uid="uid://bifoo3ioqpa1v"]
 
 [ext_resource type="Script" path="res://scenes/agents/player.gd" id="1_ofvks"]
 [ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="1_vgdam"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="6_1o66d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lpiyp"]
+radius = 129.19
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ofvks")
@@ -25,3 +28,10 @@ texture = ExtResource("1_vgdam")
 [node name="HurtBoxComponent" parent="." instance=ExtResource("5_dhf71")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_1o66d")]
+
+[node name="YumSphere" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YumSphere"]
+shape = SubResource("CircleShape2D_lpiyp")
+
+[connection signal="area_entered" from="YumSphere" to="." method="_on_yum_sphere_area_entered"]

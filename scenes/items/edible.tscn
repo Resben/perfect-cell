@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnym6m0shj28e"]
+[gd_scene load_steps=4 format=3 uid="uid://cnym6m0shj28e"]
+
+[ext_resource type="Script" path="res://scenes/items/edible.gd" id="1_h6mgl"]
+[ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="2_gvprc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vf2qm"]
 
 [node name="edible" type="Area2D"]
+script = ExtResource("1_h6mgl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vf2qm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.904207, 1.59794e-05, 0.617072, 1)
+position = Vector2(-1, -2)
+scale = Vector2(0.304688, 0.3125)
+texture = ExtResource("2_gvprc")

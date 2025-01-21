@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjq0d5dig2lwg"]
+
+[ext_resource type="Script" path="res://scenes/agents/enemy1.gd" id="1_ytcqb"]
+[ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="2_cm31u"]
+[ext_resource type="PackedScene" uid="uid://cnym6m0shj28e" path="res://scenes/items/edible.tscn" id="2_klj00"]
+[ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="3_nv2j6"]
+[ext_resource type="PackedScene" uid="uid://c32p7a7tdl8fw" path="res://scenes/components/hit_box_component.tscn" id="4_0ymld"]
+[ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_2a1y1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft634"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ytcqb")
+edible = ExtResource("2_klj00")
+value = 5
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ft634")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_cm31u")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_nv2j6")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("4_0ymld")]
+
+[node name="HurtBoxComponent" parent="." instance=ExtResource("5_2a1y1")]

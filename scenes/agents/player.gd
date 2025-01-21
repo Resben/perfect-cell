@@ -21,3 +21,12 @@ func _physics_process(delta):
 
 func on_consume(value : int):
 	pass
+
+func _on_yum_sphere_area_entered(area):
+	if area is Edible:
+		current_level_points += area.value
+		GameHandler
+
+func _process(delta):
+	if Input.is_action_just_pressed("test"):
+		GameHandler.main.transition_to_next()

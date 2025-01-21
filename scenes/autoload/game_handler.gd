@@ -11,3 +11,6 @@ func get_next_level():
 	if levels.size() > level_index:
 		next_level = levels[level_index]
 	return next_level
+
+func transition_to_next():
+	pass

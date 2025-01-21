@@ -36,7 +36,6 @@ func toggle_pause():
 func switch_to_menu():
 	state = MENU
 	$TransitionPlayer.play_transition(to_menu_callback)
-	GameHandler.bye_bye()
 
 func to_menu_callback():
 	$Startup.visible = true
@@ -44,6 +43,7 @@ func to_menu_callback():
 	$HUD.visible = false
 	$Paused.visible = false
 	get_tree().paused = true
+	GameHandler.bye_bye()
 
 func switch_to_game():
 	state = GAME

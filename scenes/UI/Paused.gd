@@ -7,4 +7,4 @@ func _on_to_menu_pressed():
 	get_parent().switch_to_menu()
 
 func when_shown():
-	$TextureRect/HSlider.value = get_parent().bgm_volume
+	$MarginContainer/TextureRect/HSlider.value = get_parent().bgm_volume

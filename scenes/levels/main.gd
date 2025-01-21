@@ -32,7 +32,7 @@ func load_level(lvl : LevelData, to_current : bool):
 
 func transition_to_next():
 	if is_last_level:
-		return # Here we say the player won!
+		return #Quit here
 	
 	next_level.toggle_visibility(true)
 	
@@ -46,6 +46,18 @@ func transition_to_next():
 	var nxtLvlData = GameHandler.get_next_level()
 	if nxtLvlData == null:
 		is_last_level = true
+		return # No need to load level
 	
 	current_level = next_level
 	load_level(nxtLvlData, false)
+
+func bye_bye():
+	$Player.bye_bye()
+	
+	if current_level != null:
+		current_level.queue_free()
+	if next_level != null:
+		next_level.queue_free()
+	
+	load_level(GameHandler.levels[0], true)
+	load_level(GameHandler.get_next_level(), false)

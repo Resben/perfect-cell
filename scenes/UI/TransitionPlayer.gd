@@ -4,6 +4,7 @@ var next_callback : Callable
 var is_loading = false
 
 func _ready():
+	$TextureRect.modulate = Color(1, 1, 1, 0)
 	$Sprite2D2.visible = false
 
 func play_transition(callback : Callable):
@@ -16,13 +17,11 @@ func play_callback(anim_name):
 		$Sprite2D2.visible = true
 		$Label.visible = true
 		$LoadingAnimationPlayer.play("loop")
-		next_callback.call()
+		$DefaultTimeout.start()
 
-func scene_loaded():
+func _on_default_timeout():
+	next_callback.call()
 	$LoadingAnimationPlayer.stop()
 	$Sprite2D2.visible = false
 	$Label.visible = false
 	$AnimationPlayer.play("transition_pt2")
-
-func _on_default_timeout():
-	scene_loaded()

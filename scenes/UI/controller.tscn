@@ -63,6 +63,7 @@ _data = {
 }
 
 [node name="Control" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_m6lr5")
 
 [node name="Startup" type="Control" parent="."]
@@ -166,6 +167,7 @@ text = "Continue
 "
 
 [node name="ToMenu" type="Button" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 0
 offset_left = 203.0
 offset_top = 86.0
 offset_right = 279.0
@@ -200,7 +202,6 @@ offset_bottom = 32.0
 text = "PAUSED"
 
 [node name="TransitionPlayer" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,7 +222,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="TransitionPlayer"]
-modulate = Color(0.2, 0.105882, 1, 0)
+modulate = Color(0.2, 0.105882, 1, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,6 +243,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="DefaultTimeout" type="Timer" parent="TransitionPlayer"]
+one_shot = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 

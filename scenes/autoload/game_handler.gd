@@ -16,7 +16,8 @@ func transition_to_next():
 	pass
 
 func bye_bye():
-	print("not implemented")
+	level_index = 0
+	main.bye_bye()
 
 func play():
 	pass

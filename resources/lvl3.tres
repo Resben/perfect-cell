@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=5 format=3 uid="uid://bo4pvmfyfox03"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_r3s4i"]
+
+[sub_resource type="Gradient" id="Gradient_qupkp"]
+offsets = PackedFloat32Array(0, 0.740964, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.740964, 0.740964, 0.740964, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2dew8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_efj1g"]
+color_ramp = SubResource("Gradient_qupkp")
+noise = SubResource("FastNoiseLite_2dew8")
+
+[resource]
+script = ExtResource("1_r3s4i")
+required_points = 250
+enemy_composition = {}
+texture = SubResource("NoiseTexture2D_efj1g")

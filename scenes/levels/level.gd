@@ -14,8 +14,6 @@ func toggle_visibility(is_active : bool):
 	visible = is_active
 	
 	if !is_active:
-		modulate = Color(1, 1, 1, 0)
 		process_mode = PROCESS_MODE_DISABLED
 	else:
-		modulate = Color(1, 1, 1, 1)
 		process_mode = PROCESS_MODE_PAUSABLE

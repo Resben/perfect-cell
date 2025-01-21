@@ -4,25 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://bvwo0n6v5p4ic" path="res://scenes/levels/entity_handler.tscn" id="2_p4n72"]
 [ext_resource type="PackedScene" uid="uid://cnym6m0shj28e" path="res://scenes/items/edible.tscn" id="3_2pjbd"]
 
-[sub_resource type="Gradient" id="Gradient_sseow"]
-colors = PackedColorArray(0.738048, 0.727361, 3.85046e-07, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_6abjy"]
+colors = PackedColorArray(0.802971, 0.297068, 0.479155, 1, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2yroe"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wjjvk"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wnocg"]
-color_ramp = SubResource("Gradient_sseow")
-noise = SubResource("FastNoiseLite_2yroe")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0w0gc"]
+color_ramp = SubResource("Gradient_6abjy")
+noise = SubResource("FastNoiseLite_wjjvk")
 
 [node name="Level" type="Node2D"]
 z_index = -1
 script = ExtResource("1_vaaa6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(273.5, 159)
-scale = Vector2(1.35352, 1)
-texture = SubResource("NoiseTexture2D_wnocg")
-
 [node name="EntityHandler" parent="." instance=ExtResource("2_p4n72")]
 
 [node name="edible" parent="." instance=ExtResource("3_2pjbd")]
 position = Vector2(409, 168)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1536, 1536)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(3, 3)
+texture = SubResource("NoiseTexture2D_0w0gc")

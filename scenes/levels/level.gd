@@ -6,7 +6,7 @@ var data : LevelData
 # Set backgrounds and every and etc
 func setup(lvl_data : LevelData):
 	data = lvl_data
-	$Sprite2D.texture = data.texture
+	$ParallaxBackground/ParallaxLayer/Sprite2D.texture = data.texture
 
 func toggle_visibility(is_active : bool):
 	visible = is_active

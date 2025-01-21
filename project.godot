@@ -23,6 +23,9 @@ GameHandler="*res://scenes/autoload/game_handler.tscn"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [input]
 

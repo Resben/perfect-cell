@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kydyha1oywvr"]
+[gd_scene load_steps=8 format=3 uid="uid://kydyha1oywvr"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vaaa6"]
 [ext_resource type="PackedScene" uid="uid://bvwo0n6v5p4ic" path="res://scenes/levels/entity_handler.tscn" id="2_p4n72"]
@@ -12,6 +12,10 @@ colors = PackedColorArray(0.802971, 0.297068, 0.479155, 1, 1, 1, 1, 1)
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0w0gc"]
 color_ramp = SubResource("Gradient_6abjy")
 noise = SubResource("FastNoiseLite_wjjvk")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d0wr8"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-40940, -42754, 71143, -44850, 89709, 69718, -139040, 56413)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level" type="Node2D"]
 z_index = -1
@@ -30,3 +34,6 @@ motion_mirroring = Vector2(1536, 1536)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2(3, 3)
 texture = SubResource("NoiseTexture2D_0w0gc")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_d0wr8")

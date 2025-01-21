@@ -30,7 +30,8 @@ texture = ExtResource("1_vgdam")
 [node name="VelocityComponent" parent="." instance=ExtResource("3_5ji0m")]
 max_speed = 300.0
 
-[node name="HurtBoxComponent" parent="." instance=ExtResource("5_dhf71")]
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_dhf71")]
+health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("CircleShape2D_fo2rn")

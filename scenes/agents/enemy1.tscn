@@ -35,7 +35,8 @@ texture = ExtResource("3_fr4ka")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_nv2j6")]
 
-[node name="NavigationComponent" parent="." instance=ExtResource("6_6gkto")]
+[node name="NavigationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("6_6gkto")]
+velocity_component = NodePath("../VelocityComponent")
 
 [node name="HitBoxComponent" parent="." instance=ExtResource("4_0ymld")]
 

@@ -1,6 +1,13 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=5 format=3 uid="uid://bo4pvmfyfox03"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3 uid="uid://bo4pvmfyfox03"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_r3s4i"]
+[ext_resource type="PackedScene" uid="uid://cjq0d5dig2lwg" path="res://scenes/agents/enemy1.tscn" id="1_tukpq"]
+[ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="2_r7k7i"]
+
+[sub_resource type="Resource" id="Resource_yn2xv"]
+script = ExtResource("2_r7k7i")
+spawn_rate = 100
+enemy = ExtResource("1_tukpq")
 
 [sub_resource type="Gradient" id="Gradient_qupkp"]
 offsets = PackedFloat32Array(0, 0.740964, 1)
@@ -14,6 +21,6 @@ noise = SubResource("FastNoiseLite_2dew8")
 
 [resource]
 script = ExtResource("1_r3s4i")
-required_points = 250
-enemy_composition = {}
+required_points = 300
+enemy_composition = Array[ExtResource("2_r7k7i")]([SubResource("Resource_yn2xv")])
 texture = SubResource("NoiseTexture2D_efj1g")

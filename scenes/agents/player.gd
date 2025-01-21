@@ -8,6 +8,9 @@ class_name Player
 
 var current_level_points : int = 0
 
+func _ready():
+	add_to_group("player")
+
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	

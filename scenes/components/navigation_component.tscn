@@ -7,4 +7,6 @@ script = ExtResource("1_33h3g")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="IntervalTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

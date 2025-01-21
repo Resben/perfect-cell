@@ -7,6 +7,7 @@ var data : LevelData
 func setup(lvl_data : LevelData):
 	data = lvl_data
 	$ParallaxBackground/ParallaxLayer/Sprite2D.texture = data.texture
+	$EntityHandler.setup(lvl_data)
 
 func toggle_visibility(is_active : bool):
 	visible = is_active

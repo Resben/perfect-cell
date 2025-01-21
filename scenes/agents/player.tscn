@@ -52,5 +52,10 @@ shape = SubResource("CircleShape2D_lpiyp")
 debug_color = Color(0.85098, 0, 0.898039, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -20000
+limit_top = -20000
+limit_right = 20000
+limit_bottom = 20000
+editor_draw_limits = true
 
 [connection signal="area_entered" from="YumSphere" to="." method="_on_yum_sphere_area_entered"]

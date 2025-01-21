@@ -8,13 +8,15 @@ class_name Player
 
 var current_level_points : int = 0
 
+var direction = Vector2(1, 1)
+
 func _ready():
 	add_to_group("player")
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	
-	var direction = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"), Input.get_action_strength("down") - Input.get_action_strength("up"))
+	direction = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"), Input.get_action_strength("down") - Input.get_action_strength("up"))
 
 	if velocity.length() > 1:
 		velocity = velocity.normalized()

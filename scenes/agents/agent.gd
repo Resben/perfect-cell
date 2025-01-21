@@ -3,7 +3,7 @@ class_name Agent
 
 enum { WANDER, ATTACK, DEAD }
 var state = WANDER
-var last_state = WANDER
+var last_state = DEAD
 
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var velocity_component : VelocityComponent = $VelocityComponent

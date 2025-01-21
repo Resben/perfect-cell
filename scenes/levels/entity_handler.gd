@@ -4,8 +4,9 @@ var enemy_composition : Array[EnemyData]
 var enemy_references = []
 
 var player_ref : Player
-var spawn_radius = 500
-var despawn_radius = 1000
+var view_radius = 500
+var spawn_radius = 1000
+var despawn_radius = 2000
 var min_enemies = 5
 
 func _ready():
@@ -37,7 +38,11 @@ func ensure_entities_around_player():
 
 func spawn_enemy_near_player(player_position: Vector2):
 	var enemy = enemy_composition[0].enemy.instantiate()
-	var random_offset = Vector2(randf() * spawn_radius, randf() * spawn_radius).rotated(randf() * TAU)
+	var random_offset = player_ref.direction * randf_range(1, 2) * view_radius
+
+	var angle_variation = deg_to_rad(45)
+	random_offset = random_offset.rotated(randf_range(-angle_variation, angle_variation))
 	enemy.global_position = player_position + random_offset
+	
 	add_child(enemy)
 	enemy_references.push_back(enemy)

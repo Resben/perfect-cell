@@ -1,22 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://bifoo3ioqpa1v"]
+[gd_scene load_steps=12 format=3 uid="uid://bifoo3ioqpa1v"]
 
 [ext_resource type="Script" path="res://scenes/agents/player.gd" id="1_ofvks"]
 [ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="1_vgdam"]
 [ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="3_5ji0m"]
-[ext_resource type="PackedScene" uid="uid://c32p7a7tdl8fw" path="res://scenes/components/hit_box_component.tscn" id="4_4c377"]
 [ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_dhf71"]
 [ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="6_1o66d"]
+[ext_resource type="PackedScene" uid="uid://yvfm13orlegp" path="res://scenes/components/mouth_component.tscn" id="6_7o8w2"]
+[ext_resource type="PackedScene" uid="uid://cv0qb2dj0xkb6" path="res://scenes/components/consumable_component.tscn" id="7_wi1qy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo2rn"]
 radius = 86.0233
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2f7fh"]
-radius = 64.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_64i7a"]
+radius = 52.0096
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lpiyp"]
-radius = 129.19
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqt3v"]
+radius = 34.0147
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ofvks")
@@ -37,19 +38,17 @@ health_component = NodePath("../HealthComponent")
 shape = SubResource("CircleShape2D_fo2rn")
 debug_color = Color(0, 0.558799, 0.891529, 0.42)
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("4_4c377")]
+[node name="MouthComponent" parent="." instance=ExtResource("6_7o8w2")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("CircleShape2D_2f7fh")
-debug_color = Color(0.790902, 0.428436, 0, 0.42)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouthComponent"]
+shape = SubResource("CircleShape2D_64i7a")
+
+[node name="ConsumableComponent" parent="." instance=ExtResource("7_wi1qy")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConsumableComponent"]
+shape = SubResource("CircleShape2D_pqt3v")
 
 [node name="HealthComponent" parent="." instance=ExtResource("6_1o66d")]
-
-[node name="YumSphere" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YumSphere"]
-shape = SubResource("CircleShape2D_lpiyp")
-debug_color = Color(0.85098, 0, 0.898039, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -20000
@@ -57,5 +56,3 @@ limit_top = -20000
 limit_right = 20000
 limit_bottom = 20000
 editor_draw_limits = true
-
-[connection signal="area_entered" from="YumSphere" to="." method="_on_yum_sphere_area_entered"]

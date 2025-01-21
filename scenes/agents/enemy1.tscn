@@ -1,25 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjq0d5dig2lwg"]
+[gd_scene load_steps=13 format=3 uid="uid://cjq0d5dig2lwg"]
 
 [ext_resource type="Script" path="res://scenes/agents/enemy1.gd" id="1_ytcqb"]
 [ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="2_cm31u"]
-[ext_resource type="PackedScene" uid="uid://cnym6m0shj28e" path="res://scenes/items/edible.tscn" id="2_klj00"]
 [ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="3_fr4ka"]
+[ext_resource type="PackedScene" uid="uid://cv0qb2dj0xkb6" path="res://scenes/components/consumable_component.tscn" id="3_md4p1"]
 [ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="3_nv2j6"]
-[ext_resource type="PackedScene" uid="uid://c32p7a7tdl8fw" path="res://scenes/components/hit_box_component.tscn" id="4_0ymld"]
 [ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_2a1y1"]
 [ext_resource type="PackedScene" uid="uid://clunnkcch7s0" path="res://scenes/components/navigation_component.tscn" id="6_6gkto"]
+[ext_resource type="PackedScene" uid="uid://yvfm13orlegp" path="res://scenes/components/mouth_component.tscn" id="8_f66kn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ft634"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_iwlnf"]
-radius = 23.0217
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k3sjb"]
 radius = 6.32456
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rfay"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmxqr"]
+radius = 6.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_ytcqb")
-edible = ExtResource("2_klj00")
 value = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -38,12 +40,6 @@ texture = ExtResource("3_fr4ka")
 [node name="NavigationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("6_6gkto")]
 velocity_component = NodePath("../VelocityComponent")
 
-[node name="HitBoxComponent" parent="." instance=ExtResource("4_0ymld")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-shape = SubResource("CircleShape2D_iwlnf")
-debug_color = Color(1, 0, 0, 0.419608)
-
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_2a1y1")]
 health_component = NodePath("../HealthComponent")
 process_impact_damage = true
@@ -51,3 +47,13 @@ process_impact_damage = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("CircleShape2D_k3sjb")
 debug_color = Color(0, 0.635294, 0, 0.419608)
+
+[node name="MouthComponent" parent="." instance=ExtResource("8_f66kn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouthComponent"]
+shape = SubResource("CircleShape2D_3rfay")
+
+[node name="ConsumableComponent" parent="." instance=ExtResource("3_md4p1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConsumableComponent"]
+shape = SubResource("CircleShape2D_mmxqr")

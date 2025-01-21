@@ -45,4 +45,15 @@ func spawn_enemy_near_player(player_position: Vector2):
 	enemy.global_position = player_position + random_offset
 	
 	add_child(enemy)
+	var rand_size = randi_range(1, 10)
+	var result = map_value(rand_size, 1, 10, 0.2, 2)
+	enemy.size = rand_size
+	enemy.scale = Vector2(result, result)
+	enemy._died.connect(self.on_registered_entity_died)
 	enemy_references.push_back(enemy)
+
+func map_value(input_value: float, min_input: float, max_input: float, min_output: float, max_output: float) -> float:
+	return min_output + (input_value - min_input) * (max_output - min_output) / (max_input - min_input)
+
+func on_registered_entity_died(body):
+	enemy_references.erase(body)

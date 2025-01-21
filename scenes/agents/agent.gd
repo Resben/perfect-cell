@@ -1,22 +1,17 @@
-extends CharacterBody2D
+extends Entity
 class_name Agent
 
 enum { WANDER, ATTACK, DEAD }
 var state = WANDER
 var last_state = DEAD
 
-@onready var health_component : HealthComponent = $HealthComponent
-@onready var velocity_component : VelocityComponent = $VelocityComponent
-@onready var hitbox_component : HitBoxComponent = $HitBoxComponent
-@onready var hurtbox_component : HurtBoxComponent = $HurtBoxComponent
 @onready var navigation_component : NavigationComponent = $NavigationComponent
 
-@export var edible : PackedScene
 @export var value : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	health_component._on_health_depletion.connect(self.on_death)
+	super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -43,10 +38,14 @@ func enter_state(in_state):
 func run_state(delta, in_state):
 	pass
 
+func on_eaten(body):
+	state = DEAD
+	die()
+
+func on_consume(body):
+	pass
+
+# Died to something other than consumption
 func on_death():
 	state = DEAD
-	var to_spawn = edible.instantiate() as Edible
-	to_spawn.setup(value)
-	to_spawn.position = position
-	get_parent().add_child(to_spawn)
-
+	die()

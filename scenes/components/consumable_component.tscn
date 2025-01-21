@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv0qb2dj0xkb6"]
+
+[ext_resource type="Script" path="res://scenes/components/consumable_component.gd" id="1_0glja"]
+
+[node name="ConsumableComponent" type="Area2D"]
+script = ExtResource("1_0glja")

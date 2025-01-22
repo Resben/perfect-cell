@@ -4,6 +4,7 @@ class_name Player
 var direction = Vector2(1, 1)
 
 func _ready():
+	super._ready()
 	add_to_group("player")
 	consumed_points = 25
 	GameHandler._start_game.connect(self.init_player)
@@ -31,4 +32,4 @@ func bye_bye():
 	z_index = 1
 
 func on_eaten(body):
-	pass # Game over
+	pass # Died

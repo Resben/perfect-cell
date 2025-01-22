@@ -5,7 +5,7 @@ signal _died
 
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var velocity_component : VelocityComponent = $VelocityComponent
-@onready var hitbox_component : HitBoxComponent = $HitBoxComponent
+@onready var hurtbox_component : HurtBoxComponent = $HurtBoxComponent
 @onready var mouth_component : MouthComponent = $MouthComponent
 @onready var consumable_component : ConsumableComponent = $ConsumableComponent
 

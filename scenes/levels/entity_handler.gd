@@ -38,7 +38,14 @@ func ensure_entities_around_player():
 
 func spawn_enemy_near_player(player_position: Vector2):
 	var enemy = enemy_composition[0].enemy.instantiate()
-	var random_offset = player_ref.direction * randf_range(1, 2) * view_radius
+	var direction
+	var random_offset
+	
+	# Spawn in all direcitons or in the direction the player is moving
+	if player_ref.direction == Vector2(0, 0):
+		random_offset = Vector2(randf_range(1, 2) * spawn_radius, randf_range(1, 2) * spawn_radius).rotated(randf_range(1, 2) * TAU)
+	else:
+		random_offset = player_ref.direction * randf_range(1, 2) * view_radius
 
 	var angle_variation = deg_to_rad(45)
 	random_offset = random_offset.rotated(randf_range(-angle_variation, angle_variation))

@@ -9,7 +9,8 @@ signal _died
 @onready var mouth_component : MouthComponent = $MouthComponent
 @onready var consumable_component : ConsumableComponent = $ConsumableComponent
 
-var size : int = 1
+var value = 1
+var consumed_points : int = 0
 
 func _ready():
 	health_component._on_health_depletion.connect(self.on_death)
@@ -20,7 +21,15 @@ func on_death():
 	pass
 
 func on_consume(body):
-	pass
+	consumed_points += body.value
+	calc_size()
+
+func calc_size():
+	var lvlData = GameHandler.main.current_level.data
+	var current_max_points = lvlData.required_points * 0.9
+	var new_scale = GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
+	scale = Vector2(new_scale, new_scale)
+	z_index = GameHandler.map_value(new_scale, 0.2, 2, 1, 10)
 
 func on_eaten(body):
 	pass

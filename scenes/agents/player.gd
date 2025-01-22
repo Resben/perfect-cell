@@ -1,12 +1,15 @@
 extends Entity
 class_name Player
 
-var current_level_points : int = 0
-
 var direction = Vector2(1, 1)
 
 func _ready():
 	add_to_group("player")
+	consumed_points = 25
+	GameHandler._start_game.connect(self.init_player)
+
+func init_player():
+	calc_size()
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -24,7 +27,8 @@ func _process(delta):
 		GameHandler.main.transition_to_next()
 
 func bye_bye():
-	current_level_points = 0
+	consumed_points = 0
+	z_index = 1
 
 func on_eaten(body):
 	pass # Game over

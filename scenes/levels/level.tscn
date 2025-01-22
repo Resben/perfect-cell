@@ -1,71 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://kydyha1oywvr"]
+[gd_scene load_steps=4 format=3 uid="uid://blgayoem2xntd"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_vaaa6"]
 [ext_resource type="PackedScene" uid="uid://bvwo0n6v5p4ic" path="res://scenes/levels/entity_handler.tscn" id="2_p4n72"]
-[ext_resource type="PackedScene" uid="uid://cnym6m0shj28e" path="res://scenes/items/edible.tscn" id="3_2pjbd"]
 
-[sub_resource type="Gradient" id="Gradient_6abjy"]
-colors = PackedColorArray(0.802971, 0.297068, 0.479155, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wjjvk"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0w0gc"]
-color_ramp = SubResource("Gradient_6abjy")
-noise = SubResource("FastNoiseLite_wjjvk")
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7qmbn"]
-vertices = PackedVector2Array(93694, 63296, -60525, 51521, -52900, -46084, 95232, -51740)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xuaq2"]
+vertices = PackedVector2Array(23839, -12327, 22994, 13597, -19630, 12450, -11059, -13202)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-52910, -46094, 95243, -51751, 93704, 63307, -60536, 51531)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-11066, -13213, 23850, -12337, 23004, 13608, -19644, 12460)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1k4c"]
-size = Vector2(1066, 38816)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0k7v"]
-size = Vector2(38740, 1066)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3en6"]
-size = Vector2(38435, 685)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhhv8"]
-size = Vector2(1294, 38283)
-
 [node name="Level" type="Node2D"]
-z_index = -1
 script = ExtResource("1_vaaa6")
 
 [node name="EntityHandler" parent="." instance=ExtResource("2_p4n72")]
 
-[node name="edible" parent="." instance=ExtResource("3_2pjbd")]
-position = Vector2(409, 168)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(1536, 1536)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2(3, 3)
-texture = SubResource("NoiseTexture2D_0w0gc")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_7qmbn")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-18587, 148)
-shape = SubResource("RectangleShape2D_s1k4c")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(250, -18575)
-shape = SubResource("RectangleShape2D_q0k7v")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(174.5, 18985.5)
-shape = SubResource("RectangleShape2D_w3en6")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(18897, -42.5)
-shape = SubResource("RectangleShape2D_hhhv8")
+navigation_polygon = SubResource("NavigationPolygon_xuaq2")

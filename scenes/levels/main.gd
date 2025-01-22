@@ -11,6 +11,7 @@ func _ready():
 	load_level(GameHandler.levels[0], true)
 	load_level(GameHandler.get_next_level(), false)
 	GameHandler.main = self
+	GameHandler.game_ready()
 
 func load_level(lvl : LevelData, to_current : bool):
 	var level = level_prefab.instantiate() as Level

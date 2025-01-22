@@ -46,14 +46,13 @@ func spawn_enemy_near_player(player_position: Vector2):
 	
 	add_child(enemy)
 	var rand_size = randi_range(1, 10)
-	var result = map_value(rand_size, 1, 10, 0.2, 2)
-	enemy.size = rand_size
+	var result = GameHandler.map_value(rand_size, 1, 10, 0.2, 2)
+	var lvlData = GameHandler.main.current_level.data
+	enemy.consumed_points = GameHandler.map_value(result, 0.2, 2, lvlData.last_required_points, lvlData.required_points * 0.9)
+	enemy.z_index = rand_size
 	enemy.scale = Vector2(result, result)
 	enemy._died.connect(self.on_registered_entity_died)
 	enemy_references.push_back(enemy)
-
-func map_value(input_value: float, min_input: float, max_input: float, min_output: float, max_output: float) -> float:
-	return min_output + (input_value - min_input) * (max_output - min_output) / (max_input - min_input)
 
 func on_registered_entity_died(body):
 	enemy_references.erase(body)

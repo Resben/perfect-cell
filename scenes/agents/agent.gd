@@ -7,8 +7,6 @@ var last_state = DEAD
 
 @onready var navigation_component : NavigationComponent = $NavigationComponent
 
-@export var value : int
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()

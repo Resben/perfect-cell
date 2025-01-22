@@ -11,21 +11,24 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fo2rn"]
-radius = 86.0233
+radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64i7a"]
-radius = 52.0096
+radius = 15.2971
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqt3v"]
-radius = 34.0147
+radius = 6.32456
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ofvks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d444l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_vgdam")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_5ji0m")]

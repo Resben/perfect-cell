@@ -16,3 +16,12 @@ func toggle_visibility(is_active : bool):
 		process_mode = PROCESS_MODE_DISABLED
 	else:
 		process_mode = PROCESS_MODE_PAUSABLE
+
+func finish_transition():
+	$EntityHandler.enable_consumption()
+
+func toggle_consumption(val : bool):
+	if val:
+		$EntityHandler.enable_consumption()
+	else:
+		$EntityHandler.disable_consumption()

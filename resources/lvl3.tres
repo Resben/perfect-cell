@@ -22,5 +22,6 @@ noise = SubResource("FastNoiseLite_2dew8")
 [resource]
 script = ExtResource("1_r3s4i")
 required_points = 300
+last_required_points = 200
 enemy_composition = Array[ExtResource("2_r7k7i")]([SubResource("Resource_yn2xv")])
 texture = SubResource("NoiseTexture2D_efj1g")

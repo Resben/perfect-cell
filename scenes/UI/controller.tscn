@@ -62,7 +62,7 @@ _data = {
 "loop": SubResource("Animation_1bwyy")
 }
 
-[node name="Control" type="CanvasLayer"]
+[node name="Controller" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_m6lr5")
 
@@ -115,13 +115,20 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("2_3hwkv")
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 51.0
+offset_bottom = 31.0
+text = "Score"
 
 [node name="Paused" type="Control" parent="."]
 visible = false

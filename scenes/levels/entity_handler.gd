@@ -9,6 +9,8 @@ var spawn_radius = 1000
 var despawn_radius = 2000
 var min_enemies = 5
 
+var is_enabled = false
+
 func _ready():
 	player_ref = get_tree().get_nodes_in_group("player")[0]
 
@@ -59,7 +61,21 @@ func spawn_enemy_near_player(player_position: Vector2):
 	enemy.z_index = rand_size
 	enemy.scale = Vector2(result, result)
 	enemy._died.connect(self.on_registered_entity_died)
+	if is_enabled:
+		enemy.mouth_component.enable()
+	else:
+		enemy.mouth_component.disable()
 	enemy_references.push_back(enemy)
 
 func on_registered_entity_died(body):
 	enemy_references.erase(body)
+
+func enable_consumption():
+	is_enabled = true
+	for e in enemy_references:
+		e.enable_mouth()
+
+func disable_consumption():
+	is_enabled = false
+	for e in enemy_references:
+		e.disable_mouth()

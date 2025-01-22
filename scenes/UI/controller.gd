@@ -86,3 +86,6 @@ func _on_h_slider_value_changed(value):
 
 func _on_button_pressed():
 	switch_to_game()
+
+func update_score(score : int):
+	$HUD/Label.text = str(score)

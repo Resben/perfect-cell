@@ -10,7 +10,8 @@ func _ready():
 	GameHandler._start_game.connect(self.init_player)
 
 func init_player():
-	calc_size()
+	calc_size(false)
+	GameHandler.main.controller.update_score(consumed_points)
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -30,6 +31,14 @@ func _process(delta):
 func bye_bye():
 	consumed_points = 0
 	z_index = 1
+
+func on_consume(body):
+	print("value: ", body.calculate_value())
+	super.on_consume(body)
+	GameHandler.main.controller.update_score(consumed_points)
+	if consumed_points >= GameHandler.main.current_level.data.required_points:
+		print("next lvl")
+		GameHandler.main.transition_to_next()
 
 func on_eaten(body):
 	pass # Died

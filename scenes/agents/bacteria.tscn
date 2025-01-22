@@ -1,0 +1,106 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjq0d5dig2lwg"]
+
+[ext_resource type="Script" path="res://scenes/agents/bacteria.gd" id="1_wiqs8"]
+[ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="2_qtghb"]
+[ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="3_5t2w0"]
+[ext_resource type="PackedScene" uid="uid://clunnkcch7s0" path="res://scenes/components/navigation_component.tscn" id="4_eo1s4"]
+[ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_ix0tk"]
+[ext_resource type="PackedScene" uid="uid://yvfm13orlegp" path="res://scenes/components/mouth_component.tscn" id="6_1xdre"]
+[ext_resource type="PackedScene" uid="uid://cv0qb2dj0xkb6" path="res://scenes/components/consumable_component.tscn" id="7_exj6w"]
+[ext_resource type="Texture2D" uid="uid://bj5qumdd8d7ow" path="res://assets/enemies/bacteria-sheet.png" id="8_xvjxg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft634"]
+radius = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3sjb"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rfay"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmxqr"]
+radius = 9.05539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1n0p"]
+atlas = ExtResource("8_xvjxg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p52ea"]
+atlas = ExtResource("8_xvjxg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sie1"]
+atlas = ExtResource("8_xvjxg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkkhx"]
+atlas = ExtResource("8_xvjxg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoapa"]
+atlas = ExtResource("8_xvjxg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnw5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1n0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p52ea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sie1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkkhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoapa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="bacteria" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_wiqs8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ft634")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_qtghb")]
+max_speed = 50.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_5t2w0")]
+
+[node name="NavigationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("4_eo1s4")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_ix0tk")]
+health_component = NodePath("../HealthComponent")
+process_impact_damage = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_k3sjb")
+debug_color = Color(0, 0.635294, 0, 0.419608)
+
+[node name="MouthComponent" parent="." instance=ExtResource("6_1xdre")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouthComponent"]
+shape = SubResource("CircleShape2D_3rfay")
+
+[node name="ConsumableComponent" parent="." instance=ExtResource("7_exj6w")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConsumableComponent"]
+shape = SubResource("CircleShape2D_mmxqr")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-3.75509e-06, -7.62939e-06)
+sprite_frames = SubResource("SpriteFrames_dnw5k")
+autoplay = "default"
+frame_progress = 0.955025

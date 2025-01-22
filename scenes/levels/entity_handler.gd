@@ -4,10 +4,10 @@ var enemy_composition : Array[EnemyData]
 var enemy_references = []
 
 var player_ref : Player
-var view_radius = 500
-var spawn_radius = 1000
-var despawn_radius = 2000
-var min_enemies = 5
+var view_radius = 125
+var spawn_radius = 250
+var despawn_radius = 500
+var min_enemies = 10
 
 var is_enabled = false
 

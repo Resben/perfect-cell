@@ -35,6 +35,9 @@ func bye_bye():
 func on_consume(body):
 	print("value: ", body.calculate_value())
 	super.on_consume(body)
+	#var scale_value = GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
+	#var tween = get_tree().create_tween()
+	#tween.tween_property($Camera2D, "zoom", Vector2(scale_value, scale_value))
 	GameHandler.main.controller.update_score(consumed_points)
 	if consumed_points >= GameHandler.main.current_level.data.required_points:
 		print("next lvl")

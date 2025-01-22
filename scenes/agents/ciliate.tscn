@@ -1,0 +1,83 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4ysdds4jq2hh"]
+
+[ext_resource type="Script" path="res://scenes/agents/ciliate.gd" id="1_dbl50"]
+[ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="1_k38qe"]
+[ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="2_b7gk8"]
+[ext_resource type="PackedScene" uid="uid://clunnkcch7s0" path="res://scenes/components/navigation_component.tscn" id="3_ge5y1"]
+[ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="4_yth3w"]
+[ext_resource type="PackedScene" uid="uid://yvfm13orlegp" path="res://scenes/components/mouth_component.tscn" id="5_roidv"]
+[ext_resource type="PackedScene" uid="uid://cv0qb2dj0xkb6" path="res://scenes/components/consumable_component.tscn" id="6_h85pd"]
+[ext_resource type="Texture2D" uid="uid://qhdbskdgkotd" path="res://assets/enemies/Ciliates-sheet.png" id="7_kc32k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7pik"]
+radius = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_50me1"]
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7f5ro"]
+radius = 14.0357
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bu5n"]
+radius = 9.05539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rp0u"]
+atlas = ExtResource("7_kc32k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2j25"]
+atlas = ExtResource("7_kc32k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ewvl1"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6rp0u")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_s2j25")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ciliate" type="CharacterBody2D"]
+script = ExtResource("1_dbl50")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t7pik")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("1_k38qe")]
+max_speed = 25.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_b7gk8")]
+
+[node name="NavigationComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("3_ge5y1")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_yth3w")]
+health_component = NodePath("../HealthComponent")
+process_impact_damage = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_50me1")
+debug_color = Color(0, 0.635294, 0, 0.419608)
+
+[node name="MouthComponent" parent="." instance=ExtResource("5_roidv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouthComponent"]
+shape = SubResource("CircleShape2D_7f5ro")
+
+[node name="ConsumableComponent" parent="." instance=ExtResource("6_h85pd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConsumableComponent"]
+shape = SubResource("CircleShape2D_1bu5n")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-3.75509e-06, -7.62939e-06)
+sprite_frames = SubResource("SpriteFrames_ewvl1")
+autoplay = "default"
+frame_progress = 0.53313

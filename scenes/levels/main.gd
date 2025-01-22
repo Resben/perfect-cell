@@ -44,6 +44,8 @@ func transition_to_next():
 	current_level.toggle_consumption(false)
 	next_level.toggle_visibility(true)
 	
+	#### SCALE EVERYTHING INDIVIDUALLY INSTEAD
+	
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(current_level, "scale", Vector2(0.5, 0.5), 2)
 	tween.parallel().tween_property(current_level, "modulate", Color(1, 1, 1, 0), 2)

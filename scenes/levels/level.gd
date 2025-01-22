@@ -19,6 +19,7 @@ func toggle_visibility(is_active : bool):
 
 func finish_transition():
 	$EntityHandler.enable_consumption()
+	$EntityHandler.reset_nav_targets()
 
 func toggle_consumption(val : bool):
 	if val:

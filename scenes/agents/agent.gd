@@ -43,6 +43,9 @@ func on_eaten(body):
 func on_consume(body):
 	pass
 
+func force_reset_nav():
+	navigation_component.force_set_target_position(Vector2(randf_range(-200, 200), randf_range(-200, 200)) + global_position)
+
 # Died to something other than consumption
 func on_death():
 	state = DEAD

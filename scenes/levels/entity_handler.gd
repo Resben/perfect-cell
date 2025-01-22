@@ -70,6 +70,10 @@ func spawn_enemy_near_player(player_position: Vector2):
 func on_registered_entity_died(body):
 	enemy_references.erase(body)
 
+func reset_nav_targets():
+	for e in enemy_references:
+		e.force_reset_nav()
+
 func enable_consumption():
 	is_enabled = true
 	for e in enemy_references:

@@ -26,3 +26,7 @@ func toggle_consumption(val : bool):
 		$EntityHandler.enable_consumption()
 	else:
 		$EntityHandler.disable_consumption()
+
+func scale_all(tween : Tween, to_scale : Vector2, time : float):
+	for e in $EntityHandler.enemy_references:
+		tween.parallel().tween_property(e, "scale", to_scale, time)

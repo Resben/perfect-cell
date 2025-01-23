@@ -49,7 +49,8 @@ func to_menu_callback():
 	get_tree().paused = true
 	GameHandler.bye_bye()
 
-func show_game_over():
+func show_game_over(points):
+	$GameOver.set_score(points)
 	$GameOver.visible = true
 
 func switch_to_game():

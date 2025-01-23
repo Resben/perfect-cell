@@ -48,10 +48,10 @@ func transition_to_next():
 	#### SCALE EVERYTHING INDIVIDUALLY INSTEAD
 	
 	var tween = get_tree().create_tween()
-	tween.parallel().tween_property(current_level, "scale", Vector2(0.5, 0.5), 2)
+	current_level.scale_all(tween, Vector2(0.5, 0.5), 2)
 	tween.parallel().tween_property(current_level, "modulate", Color(1, 1, 1, 0), 2)
 	tween.parallel().tween_property(next_level, "modulate", Color(1, 1, 1, 1), 2)
-	tween.parallel().tween_property(next_level, "scale", Vector2(1, 1), 2)
+	#next_level.scale_all(tween, Vector2(1, 1), 2)
 	# Base new player scale off the next levels data
 	var new_scale = player_ref.calc_scale(next_level.data)
 	tween.parallel().tween_property(player_ref, "scale", Vector2(new_scale, new_scale), 2)

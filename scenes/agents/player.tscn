@@ -11,8 +11,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
 radius = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fo2rn"]
-radius = 19.0263
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfpih"]
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64i7a"]
 radius = 16.0
@@ -34,7 +34,7 @@ shape = SubResource("CircleShape2D_d444l")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-shape = SubResource("CircleShape2D_fo2rn")
+shape = SubResource("CircleShape2D_wfpih")
 debug_color = Color(0, 0.558799, 0.891529, 0.42)
 
 [node name="MouthComponent" parent="." instance=ExtResource("6_7o8w2")]

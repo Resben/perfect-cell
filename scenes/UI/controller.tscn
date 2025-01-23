@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmwnhmn5g0t52"]
+[gd_scene load_steps=16 format=3 uid="uid://bmwnhmn5g0t52"]
 
 [ext_resource type="Script" path="res://scenes/UI/controller.gd" id="1_m6lr5"]
+[ext_resource type="Theme" uid="uid://bvugtworsj3qx" path="res://resources/themes/main.tres" id="2_0kw54"]
 [ext_resource type="Script" path="res://scenes/UI/HUD.gd" id="2_3hwkv"]
+[ext_resource type="Texture2D" uid="uid://n04cwxvnmvip" path="res://assets/UI/background.png" id="2_g2hsd"]
 [ext_resource type="Script" path="res://scenes/UI/Paused.gd" id="3_qjek2"]
+[ext_resource type="Texture2D" uid="uid://bge7vomi1kby8" path="res://assets/UI/Button.png" id="3_ybb35"]
 [ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="4_3s4yv"]
 [ext_resource type="Script" path="res://scenes/UI/TransitionPlayer.gd" id="4_sgbrq"]
+[ext_resource type="Script" path="res://scenes/UI/button.gd" id="5_0afm6"]
 [ext_resource type="Script" path="res://scenes/UI/game_over.gd" id="5_ss8tr"]
 
 [sub_resource type="Animation" id="Animation_v6cdk"]
@@ -74,48 +78,95 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0kw54")
 
 [node name="TextureRect" type="TextureRect" parent="Startup"]
-modulate = Color(0.338573, 0.0890561, 0.0478947, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_3s4yv")
+texture = ExtResource("2_g2hsd")
 
-[node name="Button" type="Button" parent="Startup"]
+[node name="Button" type="TextureButton" parent="Startup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -64.0
+offset_right = 24.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(24, 16)
+texture_normal = ExtResource("3_ybb35")
+script = ExtResource("5_0afm6")
+
+[node name="Label" type="Label" parent="Startup/Button"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play
-"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="Startup"]
+[node name="Volume" type="HSlider" parent="Startup"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -111.0
-offset_top = 32.0
-offset_right = 134.0
-offset_bottom = 48.0
+offset_left = 48.0
+offset_top = 125.0
+offset_right = 293.0
+offset_bottom = 141.0
 grow_horizontal = 2
 grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Label" type="Label" parent="Startup"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -41.0
+offset_right = 148.0
+offset_bottom = -26.0
+grow_vertical = 0
+text = "Game by Resben"
+
+[node name="Label2" type="Label" parent="Startup"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -23.0
+offset_right = 148.0
+offset_bottom = -8.0
+grow_vertical = 0
+text = "Music by Robert M. Bach"
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,6 +174,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_0kw54")
 script = ExtResource("2_3hwkv")
 
 [node name="Label" type="Label" parent="HUD"]
@@ -151,6 +203,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0kw54")
 script = ExtResource("3_qjek2")
 
 [node name="MarginContainer" type="MarginContainer" parent="Paused"]
@@ -166,7 +219,6 @@ theme_override_constants/margin_right = 80
 theme_override_constants/margin_bottom = 80
 
 [node name="TextureRect" type="TextureRect" parent="Paused/MarginContainer"]
-modulate = Color(1, 1, 1, 0.4)
 layout_mode = 2
 texture = ExtResource("4_3s4yv")
 
@@ -229,6 +281,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0kw54")
 script = ExtResource("5_ss8tr")
 
 [node name="Label" type="Label" parent="GameOver"]
@@ -262,6 +315,7 @@ grow_vertical = 2
 text = "Continue"
 
 [node name="TransitionPlayer" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,6 +323,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_0kw54")
 script = ExtResource("4_sgbrq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionPlayer"]
@@ -309,8 +364,10 @@ one_shot = true
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 
+[connection signal="mouse_entered" from="Startup/Button" to="Startup/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Startup/Button" to="Startup/Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="Startup/Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="Startup/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Startup/Volume" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/Continue" to="Paused" method="_on_continue_pressed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/ToMenu" to="Paused" method="_on_to_menu_pressed"]
 [connection signal="pressed" from="GameOver/Button" to="GameOver" method="_on_button_pressed"]

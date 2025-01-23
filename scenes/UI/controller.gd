@@ -15,13 +15,13 @@ var sfx_volume = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$TransitionPlayer.visible = true
 	$GameOver.visible = false
 	$Startup.visible = true
 	$HUD.visible = false
 	$Paused.visible = false
-	get_tree().paused = true
 	$BGM.volume_db = linear_to_db(bgm_volume)
-	$Startup/HSlider.value = bgm_volume
+	$Startup/Volume.value = bgm_volume
 
 func _input(_event):
 	if Input.is_action_just_pressed("pause") && !$Startup.visible:
@@ -46,7 +46,6 @@ func to_menu_callback():
 	$HUD.visible = false
 	$Paused.visible = false
 	$GameOver.visible = false
-	get_tree().paused = true
 	GameHandler.bye_bye()
 
 func show_game_over(points):
@@ -61,7 +60,6 @@ func to_game_callback():
 	$Startup.visible = false
 	$Startup.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$HUD.visible = true
-	get_tree().paused = false
 	GameHandler.play()
 
 func switch_bgm(id):

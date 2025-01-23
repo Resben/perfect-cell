@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bvugtworsj3qx"]
+
+[ext_resource type="Texture2D" uid="uid://bmpt0om0iwg5t" path="res://assets/UI/slider.png" id="1_8q2pl"]
+[ext_resource type="FontFile" uid="uid://cj0s0vxovvmal" path="res://assets/font/pixelFont.ttf" id="1_s8lr8"]
+[ext_resource type="Texture2D" uid="uid://b54kwuuifrboq" path="res://assets/UI/slider_bar.png" id="2_oqfci"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jo8pj"]
+texture = ExtResource("2_oqfci")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_20h1n"]
+texture = ExtResource("2_oqfci")
+
+[resource]
+default_font = ExtResource("1_s8lr8")
+HSlider/icons/grabber = ExtResource("1_8q2pl")
+HSlider/icons/grabber_disabled = ExtResource("1_8q2pl")
+HSlider/icons/grabber_highlight = ExtResource("1_8q2pl")
+HSlider/icons/tick = ExtResource("2_oqfci")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_jo8pj")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_20h1n")

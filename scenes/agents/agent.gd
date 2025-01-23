@@ -12,7 +12,7 @@ func _ready():
 	super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if state != last_state:
 		exit_state(last_state)
 		enter_state(state)

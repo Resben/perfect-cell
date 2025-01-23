@@ -1,5 +1,8 @@
 extends Agent
 
+func _physics_process(delta):
+	super._physics_process(delta)
+
 func run_state(delta, in_state):
 	match in_state:
 		WANDER:

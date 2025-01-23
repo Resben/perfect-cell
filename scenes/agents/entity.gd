@@ -20,7 +20,10 @@ func on_death():
 	pass
 
 func on_consume(body):
-	consumed_points += body.calculate_value()
+	if body is Entity:
+		consumed_points += body.calculate_value()
+	elif body is Edible:
+		consumed_points += body.value
 	calc_size(true)
 
 func calc_size(should_tween : bool):

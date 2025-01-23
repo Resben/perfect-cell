@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b636mlexckail"]
+
+[ext_resource type="Script" path="res://scenes/items/goop_bundle.gd" id="1_qula5"]
+
+[node name="GoopBundle" type="Node2D"]
+script = ExtResource("1_qula5")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

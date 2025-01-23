@@ -11,7 +11,7 @@ func _ready():
 
 func init_player():
 	calc_size(false)
-	GameHandler.main.controller.update_score(consumed_points)
+	GameHandler.main.controller.hud.update_score(consumed_points)
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -33,15 +33,14 @@ func bye_bye():
 	z_index = 1
 
 func on_consume(body):
-	print("value: ", body.calculate_value())
 	super.on_consume(body)
 	#var scale_value = GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
 	#var tween = get_tree().create_tween()
 	#tween.tween_property($Camera2D, "zoom", Vector2(scale_value, scale_value))
-	GameHandler.main.controller.update_score(consumed_points)
+	GameHandler.main.controller.hud.update_score(consumed_points)
 	if consumed_points >= GameHandler.main.current_level.data.required_points:
 		print("next lvl")
 		GameHandler.main.transition_to_next()
 
 func on_eaten(body):
-	pass # Died
+	GameHandler.game_over()

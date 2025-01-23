@@ -38,7 +38,8 @@ func load_level(lvl : LevelData, to_current : bool):
 
 func transition_to_next():
 	if is_last_level:
-		return #Quit here
+		GameHandler.game_over()
+		return
 	
 	player_ref.disable_mouth()
 	current_level.toggle_consumption(false)
@@ -58,13 +59,17 @@ func transition_to_next():
 	tween.tween_callback(next_level.finish_transition)
 	tween.tween_callback(player_ref.enable_mouth)
 	
+	current_level = next_level
 	var nxtLvlData = GameHandler.get_next_level()
 	if nxtLvlData == null:
 		is_last_level = true
 		return # No need to load level
 	
-	current_level = next_level
 	load_level(nxtLvlData, false)
+
+func game_over():
+	player_ref.disable_mouth()
+	current_level.toggle_consumption(false)
 
 func bye_bye():
 	player_ref.bye_bye()

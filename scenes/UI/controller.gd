@@ -11,8 +11,11 @@ var current_bgm = "peaceful"
 var bgm_volume = 0.5
 var sfx_volume = 1.0
 
+@onready var hud = $HUD
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$GameOver.visible = false
 	$Startup.visible = true
 	$HUD.visible = false
 	$Paused.visible = false
@@ -42,8 +45,12 @@ func to_menu_callback():
 	$Startup.mouse_filter = Control.MOUSE_FILTER_STOP
 	$HUD.visible = false
 	$Paused.visible = false
+	$GameOver.visible = false
 	get_tree().paused = true
 	GameHandler.bye_bye()
+
+func show_game_over():
+	$GameOver.visible = true
 
 func switch_to_game():
 	state = GAME
@@ -86,6 +93,3 @@ func _on_h_slider_value_changed(value):
 
 func _on_button_pressed():
 	switch_to_game()
-
-func update_score(score : int):
-	$HUD/Label.text = str(score)

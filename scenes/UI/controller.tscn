@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmwnhmn5g0t52"]
+[gd_scene load_steps=12 format=3 uid="uid://bmwnhmn5g0t52"]
 
 [ext_resource type="Script" path="res://scenes/UI/controller.gd" id="1_m6lr5"]
 [ext_resource type="Script" path="res://scenes/UI/HUD.gd" id="2_3hwkv"]
 [ext_resource type="Script" path="res://scenes/UI/Paused.gd" id="3_qjek2"]
 [ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="4_3s4yv"]
 [ext_resource type="Script" path="res://scenes/UI/TransitionPlayer.gd" id="4_sgbrq"]
+[ext_resource type="Script" path="res://scenes/UI/game_over.gd" id="5_ss8tr"]
 
 [sub_resource type="Animation" id="Animation_v6cdk"]
 resource_name = "transition"
@@ -116,9 +117,11 @@ grow_vertical = 2
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_3hwkv")
 
@@ -129,6 +132,16 @@ offset_top = 8.0
 offset_right = 51.0
 offset_bottom = 31.0
 text = "Score"
+
+[node name="Label2" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Size"
 
 [node name="Paused" type="Control" parent="."]
 visible = false
@@ -208,6 +221,46 @@ offset_right = 258.0
 offset_bottom = 32.0
 text = "PAUSED"
 
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ss8tr")
+
+[node name="Label" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -43.5
+offset_right = 43.5
+offset_bottom = -20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+
+[node name="Button" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 12.0
+offset_right = 4.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
 [node name="TransitionPlayer" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -260,6 +313,7 @@ one_shot = true
 [connection signal="value_changed" from="Startup/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/Continue" to="Paused" method="_on_continue_pressed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/ToMenu" to="Paused" method="_on_to_menu_pressed"]
+[connection signal="pressed" from="GameOver/Button" to="GameOver" method="_on_button_pressed"]
 [connection signal="animation_finished" from="TransitionPlayer/AnimationPlayer" to="TransitionPlayer" method="play_callback"]
 [connection signal="timeout" from="TransitionPlayer/DefaultTimeout" to="TransitionPlayer" method="_on_default_timeout"]
 [connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]

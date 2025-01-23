@@ -103,4 +103,4 @@ modulate = Color(0, 1, 1, 1)
 position = Vector2(-3.75509e-06, -7.62939e-06)
 sprite_frames = SubResource("SpriteFrames_dnw5k")
 autoplay = "default"
-frame_progress = 0.955025
+frame_progress = 0.0105692

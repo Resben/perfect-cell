@@ -30,3 +30,7 @@ func map_value(input_value: float, min_input: float, max_input: float, min_outpu
 
 func game_ready():
 	_start_game.emit()
+
+func game_over():
+	main.game_over()
+	main.controller.show_game_over()

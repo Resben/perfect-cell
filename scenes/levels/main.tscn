@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://2quc724wnowf"]
 
 [ext_resource type="Script" path="res://scenes/levels/main.gd" id="1_of8ko"]
-[ext_resource type="PackedScene" uid="uid://blgayoem2xntd" path="res://scenes/levels/level.tscn" id="2_7t3lx"]
+[ext_resource type="PackedScene" uid="uid://6sog0jbntnl2" path="res://scenes/levels/level.tscn" id="2_55u02"]
 [ext_resource type="PackedScene" uid="uid://bmwnhmn5g0t52" path="res://scenes/UI/controller.tscn" id="3_isek5"]
 [ext_resource type="PackedScene" uid="uid://bifoo3ioqpa1v" path="res://scenes/agents/player.tscn" id="3_rr54a"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_of8ko")
-level_prefab = ExtResource("2_7t3lx")
+level_prefab = ExtResource("2_55u02")
 
 [node name="Controller" parent="." instance=ExtResource("3_isek5")]
 

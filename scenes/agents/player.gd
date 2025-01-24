@@ -1,6 +1,9 @@
 extends Entity
 class_name Player
 
+var was_eaten = false
+var won = false
+
 var direction = Vector2(1, 1)
 
 func _ready():
@@ -14,6 +17,9 @@ func init_player():
 	GameHandler.main.controller.hud.update_score(consumed_points)
 
 func _physics_process(_delta):
+	if was_eaten || won:
+		return
+	
 	direction = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"), Input.get_action_strength("down") - Input.get_action_strength("up")).normalized()
 	
 	velocity_component.accelerate_in_direction(direction)
@@ -23,10 +29,16 @@ func _process(_delta):
 	if Input.is_action_just_pressed("test"):
 		GameHandler.main.transition_to_next()
 
+func winner():
+	won = true
+
 func bye_bye():
 	consumed_points = 0
 	z_index = 1
 	mouth_component.enable()
+	was_eaten = false
+	visible = true
+	won = false
 
 func on_consume(body):
 	consumed_points += body.calculate_value()
@@ -58,3 +70,5 @@ func calc_scale(lvlData : LevelData):
 func on_eaten(body):
 	print("size: " + str(body.scale) + " vs " + str(scale))
 	GameHandler.game_over()
+	was_eaten = true
+	visible = false

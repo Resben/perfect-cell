@@ -38,7 +38,7 @@ func load_level(lvl : LevelData, to_current : bool):
 
 func transition_to_next():
 	if is_last_level:
-		GameHandler.game_over()
+		GameHandler.game_won()
 		return
 	
 	player_ref.disable_mouth()

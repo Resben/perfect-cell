@@ -34,3 +34,7 @@ func game_ready():
 func game_over():
 	main.game_over()
 	main.controller.show_game_over(main.player_ref.consumed_points)
+
+func game_won():
+	main.game_over()
+	main.controller.show_game_won(main.player_ref.consumed_points)

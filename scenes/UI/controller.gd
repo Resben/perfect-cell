@@ -51,6 +51,12 @@ func to_menu_callback():
 func show_game_over(points):
 	$GameOver.set_score(points)
 	$GameOver.visible = true
+	$GameOver.game_condition(false)
+
+func show_game_won(points):
+	$GameOver.set_score(points)
+	$GameOver.visible = true
+	$GameOver.game_condition(true)
 
 func switch_to_game():
 	state = GAME

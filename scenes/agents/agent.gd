@@ -23,7 +23,7 @@ func _physics_process(delta):
 	navigation_component.follow_path()
 	velocity_component.move(self)
 
-func exit_state(in_state):
+func exit_state(_in_state):
 	pass
 
 func enter_state(in_state):
@@ -33,14 +33,14 @@ func enter_state(in_state):
 		WANDER:
 			navigation_component.set_target_position(Vector2(randf_range(-200, 200), randf_range(-200, 200)) + global_position)
 
-func run_state(delta, in_state):
+func run_state(_delta, _in_state):
 	pass
 
-func on_eaten(body):
+func on_eaten(_body):
 	state = DEAD
 	die()
 
-func on_consume(body):
+func on_consume(_body):
 	pass
 
 func force_reset_nav():

@@ -39,7 +39,7 @@ func calc_scale(lvlData : LevelData):
 	var current_max_points = lvlData.required_points * 0.9
 	return GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
 
-func on_eaten(body):
+func on_eaten(_body):
 	pass
 
 func die():

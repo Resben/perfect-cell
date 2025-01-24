@@ -1,6 +1,6 @@
 extends Agent
 
-func run_state(delta, in_state):
+func run_state(_delta, in_state):
 	match in_state:
 		WANDER:
 			if navigation_component.is_navigation_finished():

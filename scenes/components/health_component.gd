@@ -18,7 +18,7 @@ func damage(dmg):
 	current_health -= dmg
 	current_health = min(current_health, max_health)
 	
-	health_percentage = (current_health / max_health) * 100
+	health_percentage = (float(current_health) / max_health) * 100
 	_on_health_change.emit()
 	
 	if current_health <= 0:

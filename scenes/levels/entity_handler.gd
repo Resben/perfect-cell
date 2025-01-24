@@ -17,7 +17,7 @@ func _ready():
 func setup(lvl : LevelData):
 	enemy_composition = lvl.enemy_composition
 
-func _process(delta):
+func _process(_delta):
 	ensure_entities_around_player()
 
 func ensure_entities_around_player():
@@ -40,7 +40,6 @@ func ensure_entities_around_player():
 
 func spawn_enemy_near_player(player_position: Vector2):
 	var enemy = enemy_composition[0].enemy.instantiate()
-	var direction
 	var random_offset
 	
 	# Spawn in all direcitons or in the direction the player is moving

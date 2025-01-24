@@ -4,7 +4,7 @@ var next_callback : Callable
 var is_loading = false
 
 func _ready():
-	$TextureRect.modulate = Color(1, 1, 1, 0)
+	$ColorRect.self_modulate = Color(1, 1, 1, 0)
 	$Sprite2D2.visible = false
 
 func play_transition(callback : Callable):

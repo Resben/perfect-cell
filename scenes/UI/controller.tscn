@@ -16,14 +16,14 @@ resource_name = "transition"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.2, 0.105882, 1, 0), Color(0.2, 0.105882, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5222d"]
@@ -31,14 +31,14 @@ resource_name = "transition_pt2"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.2, 0.105882, 1, 1), Color(0.2, 0.105882, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jge1q"]
@@ -166,7 +166,6 @@ grow_vertical = 0
 text = "Music by Robert M. Bach"
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,13 +189,14 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -48.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 31.0
 grow_horizontal = 0
 text = "Size"
 
 [node name="Paused" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,56 +222,104 @@ theme_override_constants/margin_bottom = 80
 layout_mode = 2
 texture = ExtResource("4_3s4yv")
 
-[node name="Continue" type="Button" parent="Paused/MarginContainer/TextureRect"]
+[node name="HSlider" type="HSlider" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.008
+offset_left = 109.0
+offset_top = 146.0
+offset_right = 377.16
+offset_bottom = 178.0
+
+[node name="Label" type="Label" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 149.0
+offset_right = 103.0
+offset_bottom = 172.0
+text = "Volume
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 2.0
+offset_right = 309.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+
+[node name="Continue" type="TextureButton" parent="Paused/MarginContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -61.0
-offset_right = 40.0
-offset_bottom = -30.0
+offset_left = -45.0
+offset_top = -51.0
+offset_right = 45.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Continue
-"
+texture_normal = ExtResource("3_ybb35")
+stretch_mode = 0
+script = ExtResource("5_0afm6")
 
-[node name="ToMenu" type="Button" parent="Paused/MarginContainer/TextureRect"]
-layout_mode = 0
-offset_left = 203.0
-offset_top = 86.0
-offset_right = 279.0
-offset_bottom = 117.0
-text = "To Menu
-"
-
-[node name="HSlider" type="HSlider" parent="Paused/MarginContainer/TextureRect"]
+[node name="Label" type="Label" parent="Paused/MarginContainer/TextureRect/Continue"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.008
-offset_left = 109.0
-offset_top = 130.0
-offset_right = 377.16
-offset_bottom = 146.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.5
+offset_right = 20.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="Paused/MarginContainer/TextureRect"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 126.0
-offset_right = 104.0
-offset_bottom = 149.0
-text = "Volume
-"
+[node name="ToMenu" type="TextureButton" parent="Paused/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -1.0
+offset_right = 46.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_ybb35")
+stretch_mode = 0
+script = ExtResource("5_0afm6")
 
-[node name="Label2" type="Label" parent="Paused/MarginContainer/TextureRect"]
-layout_mode = 0
-offset_left = 218.0
-offset_top = 9.0
-offset_right = 258.0
-offset_bottom = 32.0
-text = "PAUSED"
+[node name="Label" type="Label" parent="Paused/MarginContainer/TextureRect/ToMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.5
+offset_right = 20.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "To Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOver" type="Control" parent="."]
 visible = false
@@ -315,7 +363,6 @@ grow_vertical = 2
 text = "Continue"
 
 [node name="TransitionPlayer" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -336,8 +383,8 @@ libraries = {
 "": SubResource("AnimationLibrary_83egs")
 }
 
-[node name="TextureRect" type="TextureRect" parent="TransitionPlayer"]
-modulate = Color(0.2, 0.105882, 1, 1)
+[node name="ColorRect" type="ColorRect" parent="TransitionPlayer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -345,7 +392,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_3s4yv")
+color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="TransitionPlayer"]
 position = Vector2(585, 329)

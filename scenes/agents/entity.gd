@@ -13,7 +13,8 @@ var consumed_points : int = 0
 
 func _ready():
 	health_component._on_health_depletion.connect(self.on_death)
-	mouth_component._on_consumption.connect(self.on_consume)
+	if mouth_component:
+		mouth_component._on_consumption.connect(self.on_consume)
 	consumable_component._on_eaten.connect(self.on_eaten)
 
 func on_death():

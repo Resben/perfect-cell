@@ -7,7 +7,7 @@ var player_ref : Player
 var view_radius = 400
 var spawn_radius = 800
 var despawn_radius = 1600
-var min_enemies = 30
+var min_enemies = 15
 
 var is_enabled = false
 

@@ -9,12 +9,12 @@ func _on_area_entered(area):
 	if is_enabled && area is ConsumableComponent:
 		if area.get_parent() is Player:
 			if get_parent() is Agent:
-				if area.get_parent().scale_tacker.scale.x < get_parent().scale_tacker.scale.x:
+				if area.get_parent().scale_tracker.scale.x < get_parent().scale_tracker.scale.x:
 					_on_consumption.emit(area.get_parent())
 					area.consumed(get_parent())
 		elif area.get_parent() is Agent:
 			if get_parent() is Player:
-				if area.get_parent().scale_tacker.scale.x < get_parent().scale_tacker.scale.x:
+				if area.get_parent().scale_tracker.scale.x < get_parent().scale_tracker.scale.x:
 					_on_consumption.emit(area.get_parent())
 					area.consumed(get_parent())
 

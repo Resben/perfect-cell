@@ -19,6 +19,19 @@ func setup(lvl : LevelData):
 
 func _process(_delta):
 	ensure_entities_around_player()
+	update_hud()
+
+func update_hud():
+	var closet
+	var max = 99999
+	for e in enemy_references:
+		if e.scale_tracker.scale.x < player_ref.scale_tracker.scale.x:
+			var distance =  e.global_position.distance_to(player_ref.global_position)
+			if distance < max:
+				max = distance
+				closet = e
+	
+	GameHandler.main.controller.hud.update_arrow(player_ref.global_position.direction_to(closet.global_position))
 
 func ensure_entities_around_player():
 	var player_position = player_ref.global_position

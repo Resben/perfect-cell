@@ -9,7 +9,7 @@ signal _died
 @onready var mouth_component : MouthComponent = $MouthComponent
 @onready var consumable_component : ConsumableComponent = $ConsumableComponent
 
-@onready var scale_tacker = $Sprite2D
+@onready var scale_tracker = $Sprite2D
 var consumed_points : int = 0
 
 func _ready():

@@ -20,7 +20,7 @@ func _physics_process(delta):
 	
 	run_state(delta, state)
 	
-	navigation_component.follow_path()
+	navigation_component.follow_path(delta)
 	velocity_component.move(self)
 	
 	if velocity.length() > 0:

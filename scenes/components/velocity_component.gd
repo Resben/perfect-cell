@@ -23,11 +23,11 @@ func get_speed_percent():
 	else:
 		return min(velocity.length() / 1.0, 1.0)
 
-func accelerate_to_velocity(vel : Vector2):
-	velocity = velocity.lerp(vel, 1.0 - exp(-accelaration_coefficient))
+func accelerate_to_velocity(vel : Vector2, delta : float):
+	velocity = velocity.lerp(vel, 1.0 - exp(-accelaration_coefficient * delta))
 
-func accelerate_in_direction(dir : Vector2):
-	accelerate_to_velocity(dir * calculate_max_speed())
+func accelerate_in_direction(dir : Vector2, delta : float):
+	accelerate_to_velocity(dir * calculate_max_speed(), delta)
 
 func get_max_velocity(dir):
 	return dir * calculate_max_speed()
@@ -35,8 +35,8 @@ func get_max_velocity(dir):
 func maximise_velocity(dir : Vector2):
 	velocity = get_max_velocity(dir)
 
-func decelerate():
-	accelerate_to_velocity(Vector2.ZERO)
+func decelerate(delta : float):
+	accelerate_to_velocity(Vector2.ZERO, delta)
 
 func move(characterBody : CharacterBody2D):
 	#characterBody.velocity = velocity_override if velocity_override != null else velocity

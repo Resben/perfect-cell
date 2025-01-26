@@ -23,12 +23,12 @@ func force_set_target_position(target_position : Vector2):
 	$NavigationAgent2D.target_position = target_position
 	$IntervalTimer.call("start")
 
-func follow_path():
+func follow_path(delta : float):
 	if $NavigationAgent2D.is_navigation_finished():
-		velocity_component.decelerate()
+		velocity_component.decelerate(delta)
 		return
 	var direction = ($NavigationAgent2D.get_next_path_position() - global_position).normalized()
-	velocity_component.accelerate_in_direction(direction)
+	velocity_component.accelerate_in_direction(direction, delta)
 	$NavigationAgent2D.velocity = velocity_component.velocity
 
 func _on_velocity_computed(velocity : Vector2):

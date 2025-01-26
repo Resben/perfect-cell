@@ -16,13 +16,13 @@ func init_player():
 	calc_size(false)
 	GameHandler.main.controller.hud.update_score(consumed_points)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if was_eaten || won:
 		return
 	
 	direction = Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"), Input.get_action_strength("down") - Input.get_action_strength("up")).normalized()
 	
-	velocity_component.accelerate_in_direction(direction)
+	velocity_component.accelerate_in_direction(direction, delta)
 	velocity_component.move(self)
 
 func _process(_delta):

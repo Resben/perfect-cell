@@ -22,6 +22,9 @@ func _physics_process(delta):
 	
 	navigation_component.follow_path()
 	velocity_component.move(self)
+	
+	if velocity.length() > 0:
+		rotation = lerp_angle(rotation, velocity.angle() + 90, 3.0 * delta)
 
 func exit_state(_in_state):
 	pass

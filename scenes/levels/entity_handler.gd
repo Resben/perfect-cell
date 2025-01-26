@@ -44,7 +44,7 @@ func spawn_enemy_near_player(player_position: Vector2):
 	
 	# Spawn in all direcitons or in the direction the player is moving
 	if player_ref.direction == Vector2(0, 0):
-		random_offset = Vector2(randf_range(400, 800), 0).rotated(randf_range(0, 1) * TAU)
+		random_offset = Vector2(randf_range(view_radius, spawn_radius), 0).rotated(randf_range(0, 1) * TAU)
 	else:
 		random_offset = player_ref.direction * randf_range(1, 2) * view_radius
 
@@ -54,7 +54,6 @@ func spawn_enemy_near_player(player_position: Vector2):
 	
 	add_child(enemy)
 	var rand_size = get_biased_random(1, 10, 2)
-	print(rand_size)
 	var result = GameHandler.map_value(rand_size, 1, 10, 0.2, 2)
 	var lvlData = GameHandler.main.current_level.data
 	enemy.consumed_points = GameHandler.map_value(result, 0.2, 2, lvlData.last_required_points, lvlData.required_points * 0.9)

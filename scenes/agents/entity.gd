@@ -9,6 +9,7 @@ signal _died
 @onready var mouth_component : MouthComponent = $MouthComponent
 @onready var consumable_component : ConsumableComponent = $ConsumableComponent
 
+@onready var scale_tacker = $Sprite2D
 var consumed_points : int = 0
 
 func _ready():
@@ -30,14 +31,20 @@ func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
 	if should_tween:
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "scale", Vector2(new_scale, new_scale), 1)
+		scale_components(Vector2(new_scale, new_scale), tween)
 	else:
-		scale = Vector2(new_scale, new_scale)
+		scale_components(Vector2(new_scale, new_scale))
 	z_index = GameHandler.map_value(new_scale, 0.2, 2, 1, 10)
 
 func calc_scale(lvlData : LevelData):
 	var current_max_points = lvlData.required_points * 0.9
 	return GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
+
+func scale_components(new_scale : Vector2, tween : Tween = null):
+	if tween != null:
+		tween.tween_property($Sprite2D, "scale", new_scale, 1)
+	else:
+		$Sprite2D.scale = new_scale
 
 func on_eaten(_body):
 	pass

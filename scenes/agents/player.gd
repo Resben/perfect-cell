@@ -55,10 +55,10 @@ func calc_size(should_tween : bool):
 	zoom_scale = 4.5 - zoom_scale
 	if should_tween:
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "scale", Vector2(new_scale, new_scale), 1)
+		scale_components(Vector2(new_scale, new_scale), tween)
 		tween.tween_property($Camera2D, "zoom", Vector2(zoom_scale, zoom_scale), 0.5)
 	else:
-		scale = Vector2(new_scale, new_scale)
+		scale_components(Vector2(new_scale, new_scale))
 		$Camera2D.zoom = Vector2(zoom_scale, zoom_scale)
 	z_index = GameHandler.map_value(new_scale, 0.3, 2.1, 2, 11)
 

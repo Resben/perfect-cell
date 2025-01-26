@@ -26,10 +26,10 @@ func ensure_entities_around_player():
 
 	# Check for existing entities within the radius
 	for entity in enemy_references:
-		var distance = player_position.distance_to(entity.global_position)
-		if distance <= spawn_radius:
+		var distance = player_position - entity.global_position
+		if distance.x <= spawn_radius || distance.y <= spawn_radius:
 			enemies_in_radius += 1
-		elif distance >= despawn_radius:
+		elif distance.x >= despawn_radius || distance.y >= despawn_radius:
 			enemy_references.erase(entity)
 			entity.queue_free()
 	
@@ -44,7 +44,7 @@ func spawn_enemy_near_player(player_position: Vector2):
 	
 	# Spawn in all direcitons or in the direction the player is moving
 	if player_ref.direction == Vector2(0, 0):
-		random_offset = Vector2(randf_range(1, 2) * spawn_radius, randf_range(1, 2) * spawn_radius).rotated(randf_range(1, 2) * TAU)
+		random_offset = Vector2(randf_range(400, 800), 0).rotated(randf_range(0, 1) * TAU)
 	else:
 		random_offset = player_ref.direction * randf_range(1, 2) * view_radius
 
@@ -53,7 +53,8 @@ func spawn_enemy_near_player(player_position: Vector2):
 	enemy.global_position = player_position + random_offset
 	
 	add_child(enemy)
-	var rand_size = randi_range(1, 10)
+	var rand_size = get_biased_random(1, 10, 2)
+	print(rand_size)
 	var result = GameHandler.map_value(rand_size, 1, 10, 0.2, 2)
 	var lvlData = GameHandler.main.current_level.data
 	enemy.consumed_points = GameHandler.map_value(result, 0.2, 2, lvlData.last_required_points, lvlData.required_points * 0.9)
@@ -65,6 +66,11 @@ func spawn_enemy_near_player(player_position: Vector2):
 	else:
 		enemy.mouth_component.disable()
 	enemy_references.push_back(enemy)
+
+func get_biased_random(low_range : float, high_range : float, exponent: float) -> int:
+	var x = randf()
+	x = pow(x, exponent)
+	return low_range + int(floor(high_range * x))
 
 func on_registered_entity_died(body):
 	enemy_references.erase(body)

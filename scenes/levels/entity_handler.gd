@@ -7,7 +7,7 @@ var player_ref : Player
 var view_radius = 400
 var spawn_radius = 800
 var despawn_radius = 1600
-var min_enemies = 15
+var min_enemies = 30
 
 var is_enabled = false
 
@@ -58,7 +58,7 @@ func spawn_enemy_near_player(player_position: Vector2):
 	var lvlData = GameHandler.main.current_level.data
 	enemy.consumed_points = GameHandler.map_value(result, 0.2, 2, lvlData.last_required_points, lvlData.required_points * 0.9)
 	enemy.z_index = rand_size
-	enemy.scale_components(Vector2(result, result))
+	enemy.scale_components(Vector2(result, result), 0.5, false)
 	enemy._died.connect(self.on_registered_entity_died)
 	if is_enabled:
 		enemy.mouth_component.enable()

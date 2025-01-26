@@ -31,20 +31,32 @@ func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
 	if should_tween:
 		var tween = get_tree().create_tween()
-		scale_components(Vector2(new_scale, new_scale), tween)
+		scale_components(Vector2(new_scale, new_scale), 1, false, tween)
 	else:
-		scale_components(Vector2(new_scale, new_scale))
+		scale_components(Vector2(new_scale, new_scale), 1, false)
 	z_index = GameHandler.map_value(new_scale, 0.2, 2, 1, 10)
 
 func calc_scale(lvlData : LevelData):
 	var current_max_points = lvlData.required_points * 0.9
 	return GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.2, 2)
 
-func scale_components(new_scale : Vector2, tween : Tween = null):
+func scale_components(new_scale : Vector2, time : float, is_parallel : bool, tween : Tween = null):
 	if tween != null:
-		tween.tween_property($Sprite2D, "scale", new_scale, 1)
+		if is_parallel:
+			tween.parallel().tween_property($Sprite2D, "scale", new_scale, time)
+			tween.parallel().tween_property($HurtBoxComponent, "scale", new_scale, time)
+			tween.parallel().tween_property($MouthComponent, "scale", new_scale, time)
+			tween.parallel().tween_property($ConsumableComponent, "scale", new_scale, time)
+		else:
+			tween.tween_property($Sprite2D, "scale", new_scale, time)
+			tween.tween_property($HurtBoxComponent, "scale", new_scale, time)
+			tween.tween_property($MouthComponent, "scale", new_scale, time)
+			tween.tween_property($ConsumableComponent, "scale", new_scale, time)
 	else:
 		$Sprite2D.scale = new_scale
+		$HurtBoxComponent.scale = new_scale
+		$MouthComponent.scale = new_scale
+		$ConsumableComponent.scale = new_scale
 
 func on_eaten(_body):
 	pass

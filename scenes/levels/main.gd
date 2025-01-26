@@ -54,7 +54,7 @@ func transition_to_next():
 	#next_level.scale_all(tween, Vector2(1, 1), 2)
 	# Base new player scale off the next levels data
 	var new_scale = player_ref.calc_scale(next_level.data)
-	tween.parallel().tween_property(player_ref, "scale", Vector2(new_scale, new_scale), 2)
+	player_ref.scale_components(Vector2(new_scale, new_scale), 2, true, tween)
 	tween.tween_callback(current_level.queue_free)
 	tween.tween_callback(next_level.finish_transition)
 	tween.tween_callback(player_ref.enable_mouth)

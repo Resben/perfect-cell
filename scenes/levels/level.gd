@@ -29,4 +29,4 @@ func toggle_consumption(val : bool):
 
 func scale_all(tween : Tween, to_scale : Vector2, time : float):
 	for e in $EntityHandler.enemy_references:
-		tween.parallel().tween_property(e, "scale", to_scale, time)
+		e.scale_components(to_scale, time, true, tween)

@@ -45,18 +45,17 @@ func on_consume(body):
 	calc_size(true)
 	GameHandler.main.controller.hud.update_score(consumed_points)
 	if consumed_points >= GameHandler.main.current_level.data.required_points:
-		print("next lvl")
 		GameHandler.main.transition_to_next()
 
 # Override for player
 func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
-	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, 0.5, 4)
+	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, 0.5, 3)
 	zoom_scale = 4.5 - zoom_scale
 	if should_tween:
 		var tween = get_tree().create_tween()
-		scale_components(Vector2(new_scale, new_scale), 1, false, tween)
-		tween.tween_property($Camera2D, "zoom", Vector2(zoom_scale, zoom_scale), 0.5)
+		scale_components(Vector2(new_scale, new_scale), 1, true, tween)
+		tween.parallel().tween_property($Camera2D, "zoom", Vector2(zoom_scale, zoom_scale), 0.5)
 	else:
 		scale_components(Vector2(new_scale, new_scale), false, 1)
 		$Camera2D.zoom = Vector2(zoom_scale, zoom_scale)
@@ -65,6 +64,12 @@ func calc_size(should_tween : bool):
 
 # Override for player
 func calc_scale(lvlData : LevelData):
+	if consumed_points > lvlData.required_points:
+		if GameHandler.main.next_level != null:
+			lvlData = GameHandler.main.next_level.data
+		else:
+			return 2.1
+	
 	var current_max_points = lvlData.required_points * 0.9
 	return GameHandler.map_value(consumed_points, lvlData.last_required_points, current_max_points, 0.3, 2.1)
 

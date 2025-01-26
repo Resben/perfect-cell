@@ -31,7 +31,8 @@ func update_hud():
 				max = distance
 				closet = e
 	
-	GameHandler.main.controller.hud.update_arrow(player_ref.global_position.direction_to(closet.global_position))
+	if closet != null:
+		GameHandler.main.controller.hud.update_arrow(player_ref.global_position.direction_to(closet.global_position))
 
 func ensure_entities_around_player():
 	var player_position = player_ref.global_position

@@ -31,7 +31,7 @@ func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
 	if should_tween:
 		var tween = get_tree().create_tween()
-		scale_components(Vector2(new_scale, new_scale), 1, false, tween)
+		scale_components(Vector2(new_scale, new_scale), 1, true, tween)
 	else:
 		scale_components(Vector2(new_scale, new_scale), 1, false)
 	z_index = GameHandler.map_value(new_scale, 0.2, 2, 1, 10)

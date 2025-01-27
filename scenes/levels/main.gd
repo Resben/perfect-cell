@@ -6,16 +6,20 @@ class_name Main
 @onready var controller : Controller = $Controller
 @onready var player_ref : Player = $Player
 
+const balloon = preload("res://scenes/UI/small_balloon.tscn")
+
 var current_level : Level
 var next_level : Level
 var is_last_level : bool = false
 
 func _ready():
+	GameHandler.main = self
+
+func open_scene_finished():
 	load_level(GameHandler.levels[0], true)
 	load_level(GameHandler.get_next_level(), false)
-	GameHandler.main = self
-	GameHandler.game_ready()
 	player_ref.enable_mouth()
+	GameHandler.game_ready()
 
 func load_level(lvl : LevelData, to_current : bool):
 	var level = level_prefab.instantiate() as Level

@@ -21,9 +21,6 @@ func bye_bye():
 	level_index = 0
 	main.bye_bye()
 
-func play():
-	pass
-
 # Used to calculate a scale value
 func map_value(input_value: float, min_input: float, max_input: float, min_output: float, max_output: float) -> float:
 	return min_output + (input_value - min_input) * (max_output - min_output) / (max_input - min_input)

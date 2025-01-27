@@ -12,6 +12,7 @@ var bgm_volume = 0.5
 var sfx_volume = 1.0
 
 @onready var hud = $HUD
+@onready var transition_player = $TransitionPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,15 +59,24 @@ func show_game_won(points):
 	$GameOver.visible = true
 	$GameOver.game_condition(true)
 
-func switch_to_game():
+func switch_to_game(to_dialogue : bool):
 	state = GAME
+	if to_dialogue:
+		$TransitionPlayer.play_transition(to_dialogue_callback)
+	else:
+		$TransitionPlayer.play_transition(to_game_callback)
+
+func to_dialogue_callback():
+	$Startup.visible = false
+	$Startup.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(load("res://scenes/levels/dialogue_scene.tscn").instantiate())
+
+func transition_to_game():
 	$TransitionPlayer.play_transition(to_game_callback)
 
 func to_game_callback():
-	$Startup.visible = false
-	$Startup.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$HUD.visible = true
-	GameHandler.play()
+	GameHandler.main.open_scene_finished()
 
 func switch_bgm(id):
 	if id == current_bgm:
@@ -97,4 +107,4 @@ func _on_h_slider_value_changed(value):
 	$BGM.volume_db = linear_to_db(value)
 
 func _on_button_pressed():
-	switch_to_game()
+	switch_to_game(true)

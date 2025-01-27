@@ -6,8 +6,6 @@ class_name Main
 @onready var controller : Controller = $Controller
 @onready var player_ref : Player = $Player
 
-const balloon = preload("res://scenes/UI/small_balloon.tscn")
-
 var current_level : Level
 var next_level : Level
 var is_last_level : bool = false
@@ -63,6 +61,8 @@ func transition_to_next():
 	tween.tween_callback(current_level.queue_free)
 	tween.tween_callback(next_level.finish_transition)
 	tween.tween_callback(player_ref.enable_mouth)
+	tween.tween_interval(1)
+	tween.tween_callback(next_level.show_dialogue)
 	
 	current_level = next_level
 	var nxtLvlData = GameHandler.get_next_level()

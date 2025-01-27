@@ -1,6 +1,8 @@
 extends Node2D
 class_name Level
 
+const balloon = preload("res://scenes/UI/small_balloon.tscn")
+
 var data : LevelData
 
 # Set backgrounds and every and etc
@@ -30,3 +32,9 @@ func toggle_consumption(val : bool):
 func scale_all(tween : Tween, to_scale : Vector2, time : float):
 	for e in $EntityHandler.enemy_references:
 		e.scale_components(to_scale, time, true, tween)
+
+func show_dialogue():
+	if data.dialogue_to_play != null:
+		var bubble = balloon.instantiate() as SmallBalloonDialogue
+		add_child(bubble)
+		bubble.start(data.dialogue_to_play, "start")

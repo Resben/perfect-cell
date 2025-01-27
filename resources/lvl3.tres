@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=6 format=3 uid="uid://bo4pvmfyfox03"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://bo4pvmfyfox03"]
 
+[ext_resource type="Resource" uid="uid://cb0ehri022od1" path="res://resources/dialogue/lvl3_dialogue.dialogue" id="1_fpi58"]
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_r3s4i"]
 [ext_resource type="PackedScene" uid="uid://c4ysdds4jq2hh" path="res://scenes/agents/ciliate.tscn" id="1_y38oq"]
 [ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="2_r7k7i"]
@@ -19,3 +20,4 @@ minimum_size = 100.0
 maximum_size = 500.0
 enemy_composition = Array[ExtResource("2_r7k7i")]([SubResource("Resource_yn2xv")])
 texture = ExtResource("4_e244l")
+dialogue_to_play = ExtResource("1_fpi58")

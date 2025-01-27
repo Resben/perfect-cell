@@ -10,3 +10,5 @@ class_name LevelData
 
 @export var enemy_composition : Array[EnemyData]
 @export var texture : Texture2D
+
+@export var dialogue_to_play : DialogueResource

@@ -1,5 +1,8 @@
-extends Node2D
+extends CanvasLayer
 
+const balloon = preload("res://scenes/UI/small_balloon.tscn")
 
 func _ready():
-	DialogueManager.show_example_dialogue_balloon(load("res://resources/dialogue/test.dialogue"), "start")
+	var bubble = balloon.instantiate()
+	add_child(bubble)
+	bubble.start(load("res://resources/dialogue/opening_scene.dialogue"), "start")

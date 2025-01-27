@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_14"
+type="Resource"
+uid="uid://6kux1g4h6mpk"
+path="res://.godot/imported/opening_scene.dialogue-fae6716a8d55b6b8c7ce8bab2a78cabd.tres"
+
+[deps]
+
+source_file="res://resources/dialogue/opening_scene.dialogue"
+dest_files=["res://.godot/imported/opening_scene.dialogue-fae6716a8d55b6b8c7ce8bab2a78cabd.tres"]
+
+[params]
+
+defaults=true

@@ -1,6 +1,9 @@
 extends Entity
 class_name Player
 
+@export var min_zoom : float = 0.5
+@export var max_zoom : float = 3.0
+
 var was_eaten = false
 var won = false
 
@@ -50,7 +53,7 @@ func on_consume(body):
 # Override for player
 func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
-	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, 0.5, 3)
+	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, min_zoom, max_zoom)
 	zoom_scale = 4.5 - zoom_scale
 	if should_tween:
 		var tween = get_tree().create_tween()
@@ -61,6 +64,13 @@ func calc_size(should_tween : bool):
 		$Camera2D.zoom = Vector2(zoom_scale, zoom_scale)
 	z_index = GameHandler.map_value(new_scale, 0.3, 2.1, 2, 11)
 	GameHandler.main.controller.hud.update_scale(Vector2(new_scale, new_scale))
+
+func force_calculate_zoom(lvlData : LevelData):
+	var new_scale = calc_scale(lvlData)
+	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, min_zoom, max_zoom)
+	zoom_scale = 4.5 - zoom_scale
+	var tween = get_tree().create_tween()
+	tween.parallel().tween_property($Camera2D, "zoom", Vector2(zoom_scale, zoom_scale), 0.5)
 
 # Override for player
 func calc_scale(lvlData : LevelData):

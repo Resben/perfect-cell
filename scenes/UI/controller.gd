@@ -23,10 +23,21 @@ func _ready():
 	$Paused.visible = false
 	$BGM.volume_db = linear_to_db(bgm_volume)
 	$Startup/Volume.value = bgm_volume
+	show_buttons()
 
 func _input(_event):
 	if Input.is_action_just_pressed("pause") && !$Startup.visible:
 		toggle_pause()
+
+func show_buttons():
+	if GameHandler.level_index == 0 || GameHandler.level_index == 1:
+		$Startup/Play.visible = true
+		$Startup/Continue.visible = false
+		$Startup/Restart.visible = false
+	else:
+		$Startup/Play.visible = false
+		$Startup/Continue.visible = true
+		$Startup/Restart.visible = true
 
 func toggle_pause():
 		$Paused.visible = !$Paused.visible
@@ -48,6 +59,7 @@ func to_menu_callback():
 	$Paused.visible = false
 	$GameOver.visible = false
 	GameHandler.bye_bye()
+	show_buttons()
 
 func show_game_over(points):
 	$GameOver.set_score(points)
@@ -75,6 +87,8 @@ func transition_to_game():
 	$TransitionPlayer.play_transition(to_game_callback)
 
 func to_game_callback():
+	$Startup.visible = false
+	$Startup.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$HUD.visible = true
 	GameHandler.main.open_scene_finished()
 
@@ -107,4 +121,17 @@ func _on_h_slider_value_changed(value):
 	$BGM.volume_db = linear_to_db(value)
 
 func _on_button_pressed():
+	switch_to_game(true)
+	GameHandler.level_index = 0
+	GameHandler.main.saved_index = 1
+	GameHandler.main.player_ref.consumed_points = 0
+
+func _on_continue_pressed():
+	GameHandler.level_index = GameHandler.main.saved_index - 1
+	switch_to_game(false)
+
+func _on_restart_pressed():
+	GameHandler.level_index = 0
+	GameHandler.main.saved_index = 1
+	GameHandler.main.player_ref.consumed_points = 0
 	switch_to_game(true)

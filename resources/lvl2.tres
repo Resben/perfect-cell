@@ -13,6 +13,7 @@ enemy = ExtResource("1_oq1t7")
 
 [resource]
 script = ExtResource("1_vgwd5")
+level_number = 2
 required_points = 200
 last_required_points = 100
 measurement_type = "µm"

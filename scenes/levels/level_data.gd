@@ -1,6 +1,8 @@
 extends Resource
 class_name LevelData
 
+@export var level_number : int
+
 @export var required_points : int
 @export var last_required_points : int
 

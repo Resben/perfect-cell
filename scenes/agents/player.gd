@@ -16,6 +16,7 @@ func _ready():
 	GameHandler._start_game.connect(self.init_player)
 
 func init_player():
+	consumed_points = GameHandler.main.current_level.data.last_required_points
 	calc_size(false)
 	GameHandler.main.controller.hud.update_score(consumed_points)
 
@@ -36,7 +37,6 @@ func winner():
 	won = true
 
 func bye_bye():
-	consumed_points = 0
 	z_index = 1
 	mouth_component.enable()
 	was_eaten = false

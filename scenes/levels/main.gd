@@ -6,6 +6,8 @@ class_name Main
 @onready var controller : Controller = $Controller
 @onready var player_ref : Player = $Player
 
+var saved_index = 1
+
 var current_level : Level
 var next_level : Level
 var is_last_level : bool = false
@@ -14,12 +16,20 @@ func _ready():
 	GameHandler.main = self
 
 func open_scene_finished():
-	load_level(GameHandler.levels[0], true)
+	load_level(GameHandler.get_next_level(), true)
 	load_level(GameHandler.get_next_level(), false)
 	player_ref.enable_mouth()
 	GameHandler.game_ready()
 
 func load_level(lvl : LevelData, to_current : bool):
+	if lvl == null && to_current:
+		printerr("This should never happen")
+		return
+	
+	if lvl == null && !to_current:
+		is_last_level = true
+		return
+	
 	var level = level_prefab.instantiate() as Level
 	level.setup(lvl)
 	
@@ -64,6 +74,7 @@ func transition_to_next():
 	tween.tween_interval(1)
 	tween.tween_callback(next_level.show_dialogue)
 	
+	saved_index += 1
 	current_level = next_level
 	var nxtLvlData = GameHandler.get_next_level()
 	if nxtLvlData == null:
@@ -83,6 +94,3 @@ func bye_bye():
 		current_level.queue_free()
 	if next_level != null:
 		next_level.queue_free()
-	
-	load_level(GameHandler.levels[0], true)
-	load_level(GameHandler.get_next_level(), false)

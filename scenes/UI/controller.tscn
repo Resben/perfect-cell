@@ -90,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_g2hsd")
 
-[node name="Button" type="TextureButton" parent="Startup"]
+[node name="Play" type="TextureButton" parent="Startup"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -107,7 +107,7 @@ pivot_offset = Vector2(24, 16)
 texture_normal = ExtResource("3_ybb35")
 script = ExtResource("5_0afm6")
 
-[node name="Label" type="Label" parent="Startup/Button"]
+[node name="Label" type="Label" parent="Startup/Play"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,6 +122,74 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="TextureButton" parent="Startup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -59.0
+offset_right = 45.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_ybb35")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Startup/Continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="TextureButton" parent="Startup"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -98.0
+offset_right = 45.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_ybb35")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Startup/Restart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "NEW GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -215,6 +283,7 @@ pivot_offset = Vector2(20, 20)
 texture = ExtResource("7_vqksv")
 
 [node name="Paused" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -429,9 +498,11 @@ one_shot = true
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="mouse_entered" from="Startup/Button" to="Startup/Button" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Startup/Button" to="Startup/Button" method="_on_mouse_exited"]
-[connection signal="pressed" from="Startup/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Startup/Play" to="Startup/Play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Startup/Play" to="Startup/Play" method="_on_mouse_exited"]
+[connection signal="pressed" from="Startup/Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Startup/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Startup/Restart" to="." method="_on_restart_pressed"]
 [connection signal="value_changed" from="Startup/Volume" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/Continue" to="Paused" method="_on_continue_pressed"]
 [connection signal="pressed" from="Paused/MarginContainer/TextureRect/ToMenu" to="Paused" method="_on_to_menu_pressed"]

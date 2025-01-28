@@ -1,6 +1,6 @@
 extends Control
 
-var base_offset = 100
+var base_offset = 80
 var scale_offset = 1
 var start_pos
 
@@ -17,8 +17,9 @@ func update_size(score : int):
 	$Label2.text = str(score_to_size) + lvlData.measurement_type
 
 func update_arrow(direction : Vector2):
-	$TextureRect.position = start_pos + direction * base_offset * scale_offset
+	var offset = max(80, base_offset * scale_offset.x)
+	$TextureRect.position = start_pos + direction * offset
 	$TextureRect.rotation = direction.angle()
 
 func update_scale(new_scale : Vector2):
-	scale_offset = new_scale
+	scale_offset = new_scale * 0.5

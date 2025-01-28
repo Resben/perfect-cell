@@ -41,6 +41,8 @@ func load_level(lvl : LevelData, to_current : bool):
 		add_child(current_level)
 		current_level.scale = Vector2(1, 1)
 		current_level.toggle_consumption(true)
+		if current_level.data.music_to_play:
+			GameHandler.main.controller.load_music(current_level.data.music_to_play, false)
 	else:
 		next_level = level
 		next_level.toggle_visibility(false)
@@ -73,6 +75,8 @@ func transition_to_next():
 	tween.tween_callback(player_ref.enable_mouth)
 	tween.tween_interval(1)
 	tween.tween_callback(next_level.show_dialogue)
+	if next_level.data.music_to_play:
+		GameHandler.main.controller.load_music(next_level.data.music_to_play, true)
 	
 	saved_index += 1
 	current_level = next_level

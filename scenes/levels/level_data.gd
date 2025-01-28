@@ -14,3 +14,4 @@ class_name LevelData
 @export var texture : Texture2D
 
 @export var dialogue_to_play : DialogueResource
+@export var music_to_play : AudioStream

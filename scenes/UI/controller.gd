@@ -101,14 +101,19 @@ func switch_bgm(id):
 	#tween.tween_property($BGM, "volume_db", linear_to_db(0.0), 7.5)
 	#tween.tween_callback(next_track)
 
-func next_track():
-	if current_bgm == "peaceful":
-		pass #$BGM.play("peaceful")
+func load_music(music : AudioStream, should_tween : bool):
+	if should_tween:
+		var callable = Callable(self.load_next_track).bind(music)
+		var tween = get_tree().create_tween()
+		tween.tween_property($BGM, "volume_db", linear_to_db(0), 5)
+		tween.tween_callback(callable)
+		tween.tween_property($BGM, "volume_db", linear_to_db(bgm_volume), 5)
 	else:
-		pass #BGM.play("chaos")
-	
-	var tween = get_tree().create_tween()
-	tween.tween_property($BGM, "volume_db", linear_to_db(bgm_volume), 7.5)
+		load_next_track(music)
+
+func load_next_track(music : AudioStream):
+	$BGM.stream = music
+	$BGM.play()
 
 func play_SFX(_id):
 	pass

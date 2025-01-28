@@ -30,7 +30,7 @@ func _input(_event):
 		toggle_pause()
 
 func show_buttons():
-	if GameHandler.level_index == 0 || GameHandler.level_index == 1:
+	if !GameHandler.main || GameHandler.main.saved_index == 1:
 		$Startup/Play.visible = true
 		$Startup/Continue.visible = false
 		$Startup/Restart.visible = false

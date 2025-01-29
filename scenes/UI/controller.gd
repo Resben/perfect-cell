@@ -11,6 +11,8 @@ var current_bgm = "peaceful"
 var bgm_volume = 0.5
 var sfx_volume = 1.0
 
+var track_one_active = true
+
 @onready var hud = $HUD
 @onready var transition_player = $TransitionPlayer
 
@@ -21,7 +23,8 @@ func _ready():
 	$Startup.visible = true
 	$HUD.visible = false
 	$Paused.visible = false
-	$BGM.volume_db = linear_to_db(bgm_volume)
+	$BGMOne.volume_db = linear_to_db(bgm_volume)
+	$BGMTwo.volume_db = linear_to_db(0)
 	$Startup/Volume.value = bgm_volume
 	show_buttons()
 
@@ -92,38 +95,46 @@ func to_game_callback():
 	$HUD.visible = true
 	GameHandler.main.open_scene_finished()
 
-func switch_bgm(id):
-	if id == current_bgm:
-		return
-	
-	#current_bgm = id
-	#var tween = get_tree().create_tween()
-	#tween.tween_property($BGM, "volume_db", linear_to_db(0.0), 7.5)
-	#tween.tween_callback(next_track)
-
 func load_music(music : AudioStream, should_tween : bool):
 	if should_tween:
-		var callable = Callable(self.load_next_track).bind(music)
-		var tween = get_tree().create_tween()
-		tween.tween_property($BGM, "volume_db", linear_to_db(0), 5)
-		tween.tween_callback(callable)
-		tween.tween_property($BGM, "volume_db", linear_to_db(bgm_volume), 5)
+		if track_one_active:
+			track_one_active = false
+			$BGMTwo.stream = music
+			$BGMTwo.play()
+			var tween = get_tree().create_tween()
+			tween.parallel().tween_property($BGMOne, "volume_db", linear_to_db(0), 5)
+			tween.parallel().tween_property($BGMTwo, "volume_db", linear_to_db(bgm_volume), 5)
+			tween.tween_callback($BGMOne.stop)
+		else:
+			track_one_active = true
+			$BGMOne.stream = music
+			$BGMOne.play()
+			var tween = get_tree().create_tween()
+			tween.parallel().tween_property($BGMTwo, "volume_db", linear_to_db(0), 5)
+			tween.parallel().tween_property($BGMOne, "volume_db", linear_to_db(bgm_volume), 5)
+			tween.tween_callback($BGMTwo.stop)
 	else:
-		load_next_track(music)
-
-func load_next_track(music : AudioStream):
-	$BGM.stream = music
-	$BGM.play()
+		track_one_active = true
+		$BGMOne.stream = music
+		$BGMOne.play()
+		$BGMOne.volume_db = linear_to_db(bgm_volume)
+		$BGMTwo.stop()
 
 func play_SFX(_id):
 	pass
 
 func _on_bgm_finished():
-	$BGM.play()
+	if track_one_active:
+		$BGMOne.play()
+	else:
+		$BGMTwo.play()
 
 func _on_h_slider_value_changed(value):
 	bgm_volume = value
-	$BGM.volume_db = linear_to_db(value)
+	if track_one_active:
+		$BGMOne.volume_db = linear_to_db(value)
+	else:
+		$BGMTwo.volume_db = linear_to_db(value)
 
 func _on_button_pressed():
 	switch_to_game(true)

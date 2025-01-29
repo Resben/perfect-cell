@@ -11,6 +11,12 @@ func setup(lvl_data : LevelData):
 	$ParallaxBackground/ParallaxLayer/Sprite2D.texture = data.texture
 	$EntityHandler.setup(lvl_data)
 
+func enable_spawns():
+	$EntityHandler.spawns_enabled = true
+
+func disable_spawns():
+	$EntityHandler.spawns_enabled = false
+
 func toggle_visibility(is_active : bool):
 	visible = is_active
 	

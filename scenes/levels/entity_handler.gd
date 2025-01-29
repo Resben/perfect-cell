@@ -11,6 +11,8 @@ var min_enemies = 30
 
 var is_enabled = false
 
+var spawns_enabled = false
+
 func _ready():
 	player_ref = get_tree().get_nodes_in_group("player")[0]
 
@@ -18,6 +20,9 @@ func setup(lvl : LevelData):
 	enemy_composition = lvl.enemy_composition
 
 func _process(_delta):
+	if !spawns_enabled:
+		return
+	
 	ensure_entities_around_player()
 	update_hud()
 

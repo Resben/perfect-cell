@@ -47,8 +47,10 @@ func toggle_pause():
 		if $Paused.visible:
 			$Paused.mouse_filter = Control.MOUSE_FILTER_STOP
 			$Paused.when_shown()
+			$HUD.visible = false
 		else:
 			$Paused.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			$HUD.visible = true
 		get_tree().paused = $Paused.visible
 
 func switch_to_menu():

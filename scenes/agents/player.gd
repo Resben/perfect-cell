@@ -54,7 +54,13 @@ func on_consume(body):
 func calc_size(should_tween : bool):
 	var new_scale = calc_scale(GameHandler.main.current_level.data)
 	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, min_zoom, max_zoom)
-	zoom_scale = 4.5 - zoom_scale
+	zoom_scale = (min_zoom + max_zoom) - zoom_scale
+	
+	if zoom_scale > max_zoom:
+		zoom_scale = max_zoom
+	if zoom_scale < min_zoom:
+		zoom_scale = min_zoom
+	
 	if should_tween:
 		var tween = get_tree().create_tween()
 		scale_components(Vector2(new_scale, new_scale), 1, true, tween)
@@ -68,7 +74,13 @@ func calc_size(should_tween : bool):
 func force_calculate_zoom(lvlData : LevelData):
 	var new_scale = calc_scale(lvlData)
 	var zoom_scale = GameHandler.map_value(new_scale, 0.3, 2.1, min_zoom, max_zoom)
-	zoom_scale = 4.5 - zoom_scale
+	zoom_scale = (min_zoom + max_zoom) - zoom_scale
+	
+	if zoom_scale > max_zoom:
+		zoom_scale = max_zoom
+	if zoom_scale < min_zoom:
+		zoom_scale = min_zoom
+	
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property($Camera2D, "zoom", Vector2(zoom_scale, zoom_scale), 0.5)
 

@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://n04cwxvnmvip" path="res://assets/UI/background.png" id="2_g2hsd"]
 [ext_resource type="Script" path="res://scenes/UI/Paused.gd" id="3_qjek2"]
 [ext_resource type="Texture2D" uid="uid://bge7vomi1kby8" path="res://assets/UI/Button.png" id="3_ybb35"]
-[ext_resource type="Texture2D" uid="uid://cu1cxv17r6ed4" path="res://icon.svg" id="4_3s4yv"]
 [ext_resource type="Script" path="res://scenes/UI/TransitionPlayer.gd" id="4_sgbrq"]
 [ext_resource type="Script" path="res://scenes/UI/button.gd" id="5_0afm6"]
 [ext_resource type="Script" path="res://scenes/UI/game_over.gd" id="5_ss8tr"]
 [ext_resource type="Texture2D" uid="uid://cdiklqo5kkfpo" path="res://assets/UI/arrow.png" id="7_vqksv"]
+[ext_resource type="Texture2D" uid="uid://bj5qumdd8d7ow" path="res://assets/enemies/bacteria-sheet.png" id="11_kbr6m"]
 [ext_resource type="AudioStream" uid="uid://bahy4vqomhk4q" path="res://assets/audio/music/Level 2 - Final.wav" id="12_ernul"]
 
 [sub_resource type="Animation" id="Animation_v6cdk"]
@@ -51,6 +51,8 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_1bwyy"]
 resource_name = "loop"
+length = 1.5
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,10 +60,22 @@ tracks/0/path = NodePath("Sprite2D2:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 6.28319]
+"values": [1.5708, 1.91986, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.25, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83egs"]
@@ -536,9 +550,11 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="TransitionPlayer"]
-position = Vector2(585, 329)
-scale = Vector2(0.289063, 0.296875)
-texture = ExtResource("4_3s4yv")
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(553, 329)
+rotation = 1.5708
+texture = ExtResource("11_kbr6m")
+hframes = 5
 
 [node name="Label" type="Label" parent="TransitionPlayer"]
 layout_mode = 0

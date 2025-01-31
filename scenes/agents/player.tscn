@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bifoo3ioqpa1v"]
+[gd_scene load_steps=19 format=3 uid="uid://bifoo3ioqpa1v"]
 
 [ext_resource type="Script" path="res://scenes/agents/player.gd" id="1_ofvks"]
-[ext_resource type="Texture2D" uid="uid://ccgksj4uexcwj" path="res://assets/temp/temp_player.png" id="2_00dvv"]
 [ext_resource type="PackedScene" uid="uid://dwjywv7w7fn0k" path="res://scenes/components/velocity_component.tscn" id="3_5ji0m"]
 [ext_resource type="PackedScene" uid="uid://dnvxpsmxw1x7f" path="res://scenes/components/hurt_box_component.tscn" id="5_dhf71"]
 [ext_resource type="PackedScene" uid="uid://pdvm6o1m6w2l" path="res://scenes/components/health_component.tscn" id="6_1o66d"]
 [ext_resource type="PackedScene" uid="uid://yvfm13orlegp" path="res://scenes/components/mouth_component.tscn" id="6_7o8w2"]
+[ext_resource type="Texture2D" uid="uid://byqntdxkewuyp" path="res://assets/enemies/temp_player-Sheet.png" id="7_d4hsf"]
 [ext_resource type="PackedScene" uid="uid://cv0qb2dj0xkb6" path="res://scenes/components/consumable_component.tscn" id="7_wi1qy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d444l"]
@@ -19,6 +19,56 @@ radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pqt3v"]
 radius = 12.1655
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt6ry"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dn3a"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1xql"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcav2"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epu5o"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1qe3"]
+atlas = ExtResource("7_d4hsf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_368cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt6ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dn3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1xql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcav2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epu5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1qe3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 0
@@ -57,5 +107,7 @@ limit_right = 20000
 limit_bottom = 20000
 editor_draw_limits = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_00dvv")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_368cd")
+autoplay = "default"
+frame_progress = 0.785071

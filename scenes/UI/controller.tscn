@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmwnhmn5g0t52"]
+[gd_scene load_steps=18 format=3 uid="uid://bmwnhmn5g0t52"]
 
 [ext_resource type="Script" path="res://scenes/UI/controller.gd" id="1_m6lr5"]
 [ext_resource type="Theme" uid="uid://bvugtworsj3qx" path="res://resources/themes/main.tres" id="2_0kw54"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scenes/UI/button.gd" id="5_0afm6"]
 [ext_resource type="Script" path="res://scenes/UI/game_over.gd" id="5_ss8tr"]
 [ext_resource type="Texture2D" uid="uid://cdiklqo5kkfpo" path="res://assets/UI/arrow.png" id="7_vqksv"]
+[ext_resource type="AudioStream" uid="uid://bahy4vqomhk4q" path="res://assets/audio/music/Level 2 - Final.wav" id="12_ernul"]
 
 [sub_resource type="Animation" id="Animation_v6cdk"]
 resource_name = "transition"
@@ -548,6 +549,8 @@ offset_bottom = 23.0
 one_shot = true
 
 [node name="BGMOne" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ernul")
+autoplay = true
 
 [node name="BGMTwo" type="AudioStreamPlayer" parent="."]
 

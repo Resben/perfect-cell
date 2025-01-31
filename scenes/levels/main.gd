@@ -43,7 +43,7 @@ func load_level(lvl : LevelData, to_current : bool):
 		current_level.toggle_consumption(true)
 		current_level.enable_spawns()
 		if current_level.data.music_to_play:
-			GameHandler.main.controller.load_music(current_level.data.music_to_play, false)
+			GameHandler.main.controller.load_music(current_level.data.music_to_play, true)
 	else:
 		next_level = level
 		next_level.toggle_visibility(false)

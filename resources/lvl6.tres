@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://ccsryiawnuaxj"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=4 format=3 uid="uid://ccsryiawnuaxj"]
 
+[ext_resource type="Resource" uid="uid://bec2urjr8bj3n" path="res://resources/dialogue/lvl6_dialogue.dialogue" id="1_8qm6m"]
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_jya32"]
+[ext_resource type="AudioStream" uid="uid://cuwu4wt1yjpxa" path="res://assets/audio/music/Level 6 - Final.wav" id="1_njai2"]
 
 [resource]
 script = ExtResource("1_jya32")
@@ -11,3 +13,5 @@ measurement_type = "cm"
 minimum_size = 1.0
 maximum_size = 5.0
 enemy_composition = Array[Resource("res://scenes/agents/enemy_data.gd")]([])
+dialogue_to_play = ExtResource("1_8qm6m")
+music_to_play = ExtResource("1_njai2")

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://bo4pvmfyfox03"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3 uid="uid://bo4pvmfyfox03"]
 
 [ext_resource type="Resource" uid="uid://cb0ehri022od1" path="res://resources/dialogue/lvl3_dialogue.dialogue" id="1_fpi58"]
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_r3s4i"]
 [ext_resource type="PackedScene" uid="uid://c4ysdds4jq2hh" path="res://scenes/agents/ciliate.tscn" id="1_y38oq"]
 [ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="2_r7k7i"]
+[ext_resource type="AudioStream" uid="uid://bvx0qndw0ykgv" path="res://assets/audio/music/Level 3 - Final.wav" id="4_bkifi"]
 [ext_resource type="Texture2D" uid="uid://c6l1xo1wtv14a" path="res://assets/backgrounds/lvl1_background.png" id="4_e244l"]
 
 [sub_resource type="Resource" id="Resource_yn2xv"]
@@ -22,3 +23,4 @@ maximum_size = 500.0
 enemy_composition = Array[ExtResource("2_r7k7i")]([SubResource("Resource_yn2xv")])
 texture = ExtResource("4_e244l")
 dialogue_to_play = ExtResource("1_fpi58")
+music_to_play = ExtResource("4_bkifi")

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=6 format=3 uid="uid://d2powv0a8t8pq"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://d2powv0a8t8pq"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_eiqnw"]
 [ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="1_ha57g"]
 [ext_resource type="PackedScene" uid="uid://cjq0d5dig2lwg" path="res://scenes/agents/bacteria.tscn" id="1_nwwrg"]
+[ext_resource type="AudioStream" uid="uid://corxmsgybm5ug" path="res://assets/audio/music/Level 1 - Final.wav" id="3_fvk1m"]
 [ext_resource type="Texture2D" uid="uid://c6l1xo1wtv14a" path="res://assets/backgrounds/lvl1_background.png" id="4_onybs"]
 
 [sub_resource type="Resource" id="Resource_khmh5"]
@@ -20,3 +21,4 @@ minimum_size = 1.0
 maximum_size = 10.0
 enemy_composition = Array[ExtResource("1_ha57g")]([SubResource("Resource_khmh5")])
 texture = ExtResource("4_onybs")
+music_to_play = ExtResource("3_fvk1m")

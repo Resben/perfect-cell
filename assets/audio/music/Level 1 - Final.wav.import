@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://corxmsgybm5ug"
+path="res://.godot/imported/Level 1 - Final.wav-58f31a7a17620a6a5e5209d54cbbe816.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Level 1 - Final.wav"
+dest_files=["res://.godot/imported/Level 1 - Final.wav-58f31a7a17620a6a5e5209d54cbbe816.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

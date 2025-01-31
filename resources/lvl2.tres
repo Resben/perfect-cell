@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3 uid="uid://yk76xlmyhauh"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3 uid="uid://yk76xlmyhauh"]
 
 [ext_resource type="PackedScene" uid="uid://djfnv0ckpomtg" path="res://scenes/agents/amoeba.tscn" id="1_oq1t7"]
 [ext_resource type="Resource" uid="uid://bvujlxfmjjalh" path="res://resources/dialogue/lvl2_dialogue.dialogue" id="1_u4v17"]
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_vgwd5"]
 [ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="2_67888"]
 [ext_resource type="Texture2D" uid="uid://c6l1xo1wtv14a" path="res://assets/backgrounds/lvl1_background.png" id="4_jjtso"]
+[ext_resource type="AudioStream" uid="uid://bahy4vqomhk4q" path="res://assets/audio/music/Level 2 - Final.wav" id="4_ojvb4"]
 
 [sub_resource type="Resource" id="Resource_xwwij"]
 script = ExtResource("2_67888")
@@ -22,3 +23,4 @@ maximum_size = 100.0
 enemy_composition = Array[ExtResource("2_67888")]([SubResource("Resource_xwwij")])
 texture = ExtResource("4_jjtso")
 dialogue_to_play = ExtResource("1_u4v17")
+music_to_play = ExtResource("4_ojvb4")

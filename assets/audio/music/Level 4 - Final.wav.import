@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dml4x1p8seagb"
+path="res://.godot/imported/Level 4 - Final.wav-0759101596fb3ac35820f3e26f2a1dda.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/Level 4 - Final.wav"
+dest_files=["res://.godot/imported/Level 4 - Final.wav-0759101596fb3ac35820f3e26f2a1dda.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

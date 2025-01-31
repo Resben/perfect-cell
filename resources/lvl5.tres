@@ -1,8 +1,16 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=4 format=3 uid="uid://c4n5yqf65ciye"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3 uid="uid://c4n5yqf65ciye"]
 
 [ext_resource type="Resource" uid="uid://c2kfkhvcknl6o" path="res://resources/dialogue/lvl5_dialogue.dialogue" id="1_6q7ui"]
 [ext_resource type="AudioStream" uid="uid://cnqo4wucxfxyf" path="res://assets/audio/music/Level 5 - Final.wav" id="1_7012c"]
 [ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_ndwnc"]
+[ext_resource type="PackedScene" uid="uid://djfnv0ckpomtg" path="res://scenes/agents/amoeba.tscn" id="2_pfed1"]
+[ext_resource type="Script" path="res://scenes/agents/enemy_data.gd" id="3_2bt5e"]
+[ext_resource type="Texture2D" uid="uid://c6l1xo1wtv14a" path="res://assets/backgrounds/lvl1_background.png" id="6_2omx4"]
+
+[sub_resource type="Resource" id="Resource_r3sg3"]
+script = ExtResource("3_2bt5e")
+spawn_rate = 100
+enemy = ExtResource("2_pfed1")
 
 [resource]
 script = ExtResource("1_ndwnc")
@@ -12,6 +20,7 @@ last_required_points = 400
 measurement_type = "mm"
 minimum_size = 1.0
 maximum_size = 10.0
-enemy_composition = Array[Resource("res://scenes/agents/enemy_data.gd")]([])
+enemy_composition = Array[ExtResource("3_2bt5e")]([SubResource("Resource_r3sg3")])
+texture = ExtResource("6_2omx4")
 dialogue_to_play = ExtResource("1_6q7ui")
 music_to_play = ExtResource("1_7012c")

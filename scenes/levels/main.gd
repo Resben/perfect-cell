@@ -54,6 +54,7 @@ func load_level(lvl : LevelData, to_current : bool):
 func transition_to_next():
 	if is_last_level:
 		GameHandler.main.controller.transition_to_end_scene()
+		saved_index = 1
 		return
 	
 	player_ref.disable_mouth()

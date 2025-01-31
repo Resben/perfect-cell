@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://ccsryiawnuaxj"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_data.gd" id="1_jya32"]
+
+[resource]
+script = ExtResource("1_jya32")
+level_number = 6
+required_points = 600
+last_required_points = 500
+measurement_type = "cm"
+minimum_size = 1.0
+maximum_size = 5.0
+enemy_composition = Array[Resource("res://scenes/agents/enemy_data.gd")]([])

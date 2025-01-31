@@ -13,6 +13,8 @@ var sfx_volume = 1.0
 
 var track_one_active = true
 
+var dialogue_scene = preload("res://scenes/levels/dialogue_scene.tscn")
+
 @onready var hud = $HUD
 @onready var transition_player = $TransitionPlayer
 
@@ -137,6 +139,15 @@ func _on_h_slider_value_changed(value):
 		$BGMOne.volume_db = linear_to_db(value)
 	else:
 		$BGMTwo.volume_db = linear_to_db(value)
+
+func transition_to_end_scene():
+	$TransitionPlayer.play_transition(end_scene_transition)
+
+func end_scene_transition():
+	var scene = dialogue_scene.instantiate()
+	scene.scene_to_load = "res://resources/dialogue/ending_scene.dialogue"
+	scene.is_ending_scene = true
+	GameHandler.main.add_child(scene)
 
 func _on_button_pressed():
 	switch_to_game(true)

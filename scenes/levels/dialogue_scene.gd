@@ -13,6 +13,7 @@ func _ready():
 
 func dialogue_finished():
 	if is_ending_scene:
+		GameHandler.main.controller.play_SFX("glass")
 		GameHandler.main.controller.transition_player.play_transition(custom_to_menu)
 	else:
 		GameHandler.main.controller.transition_player.play_transition(custom_to_game)

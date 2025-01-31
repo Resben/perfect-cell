@@ -570,7 +570,7 @@ autoplay = true
 
 [node name="BGMTwo" type="AudioStreamPlayer" parent="."]
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [connection signal="mouse_entered" from="Startup/Play" to="Startup/Play" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Startup/Play" to="Startup/Play" method="_on_mouse_exited"]

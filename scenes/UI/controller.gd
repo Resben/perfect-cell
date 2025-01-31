@@ -127,8 +127,9 @@ func load_music(music : AudioStream, should_tween : bool):
 		$BGMOne.volume_db = linear_to_db(bgm_volume)
 		$BGMTwo.stop()
 
-func play_SFX(_id):
-	pass
+func play_SFX(id):
+	$SFX.stream = load("res://assets/audio/sfx/" + id + ".wav")
+	$SFX.play()
 
 func _on_bgm_finished():
 	if track_one_active:

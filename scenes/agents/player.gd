@@ -29,10 +29,6 @@ func _physics_process(delta):
 	velocity_component.accelerate_in_direction(direction, delta)
 	velocity_component.move(self)
 
-func _process(_delta):
-	if Input.is_action_just_pressed("test"):
-		GameHandler.main.transition_to_next()
-
 func winner():
 	won = true
 

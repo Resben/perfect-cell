@@ -13,6 +13,8 @@ var sfx_volume = 1.0
 
 var track_one_active = true
 
+var ui_music = preload("res://assets/audio/music/Level 2 - Final.wav")
+
 var dialogue_scene = preload("res://scenes/levels/dialogue_scene.tscn")
 
 @onready var hud = $HUD
@@ -26,7 +28,7 @@ func _ready():
 	$HUD.visible = false
 	$Paused.visible = false
 	$BGMOne.volume_db = linear_to_db(bgm_volume)
-	$BGMTwo.volume_db = linear_to_db(0)
+	$BGMTwo.volume_db = linear_to_db(0.01)
 	$Startup/Volume.value = bgm_volume
 	show_buttons()
 
@@ -67,6 +69,7 @@ func to_menu_callback():
 	$GameOver.visible = false
 	GameHandler.bye_bye()
 	show_buttons()
+	load_music(ui_music, true)
 
 func show_game_over(points):
 	$GameOver.set_score(points)
@@ -106,7 +109,7 @@ func load_music(music : AudioStream, should_tween : bool):
 			$BGMTwo.stream = music
 			$BGMTwo.play()
 			var tween = get_tree().create_tween()
-			tween.parallel().tween_property($BGMOne, "volume_db", linear_to_db(0), 5)
+			tween.parallel().tween_property($BGMOne, "volume_db", linear_to_db(0.01), 5)
 			tween.parallel().tween_property($BGMTwo, "volume_db", linear_to_db(bgm_volume), 5)
 			tween.tween_callback($BGMOne.stop)
 		else:
@@ -114,7 +117,7 @@ func load_music(music : AudioStream, should_tween : bool):
 			$BGMOne.stream = music
 			$BGMOne.play()
 			var tween = get_tree().create_tween()
-			tween.parallel().tween_property($BGMTwo, "volume_db", linear_to_db(0), 5)
+			tween.parallel().tween_property($BGMTwo, "volume_db", linear_to_db(0.01), 5)
 			tween.parallel().tween_property($BGMOne, "volume_db", linear_to_db(bgm_volume), 5)
 			tween.tween_callback($BGMTwo.stop)
 	else:
